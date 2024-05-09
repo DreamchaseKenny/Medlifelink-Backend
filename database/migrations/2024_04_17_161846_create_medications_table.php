@@ -17,7 +17,8 @@ return new class extends Migration
             $table->integer('prescribed_by');
             $table->string('medicine_name');
             $table->string('dosage');
-            $table->string('status');
+            $table->string('note');
+            $table->string('status')->default("active");
             $table->text('frequency');
             $table->timestamp('start_date');
             $table->timestamps();

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('booked_with');
             $table->timestamp('appointment_time');
             $table->string('title');
+            $table->string('status');
             $table->string('description');
             $table->timestamps();
         });

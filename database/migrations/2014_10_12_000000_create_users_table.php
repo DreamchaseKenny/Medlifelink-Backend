@@ -27,8 +27,11 @@ return new class extends Migration
             $table->string('verification_code')->nullable();
             $table->boolean('email_verified')->default(0);
             $table->string('status')->default('active');
-            $table->string('user_type')->default('patient');
-            $table->string('user_type_int')->default(1);
+            $table->string('role')->default('patient');
+            $table->string('created_by')->default('');
+            $table->string('rating')->default('');
+            
+            $table->string('role_id')->default(1);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('weight')->default(0);
             $table->string('height')->default(0);

@@ -11,12 +11,45 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
+
+
+
+
+
+
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+
+        $validator = Validator::make($request->all(),[
+           
+            'role' => ['required', 'string', 'max:255'],
+            
+           
+        ]);
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"User fetch failed ",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        } else {
+
+            $users = User::where("role",$request->role)->orderBy("id","desc")->get();
+
+            
+
+            return response()->json([
+                ['message'=> 'User fetch successful','status'=>true,
+               
+                "data"=>$users->toArray()]
+            ]);
+
+
+        }
     }
 
     /**
@@ -33,7 +66,7 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(),[
            
-            'user_type' => ['required', 'string', 'max:255'],
+            'role' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6','max:255'],
             'username' => ['required', 'string', 'min:3','unique:users'],
@@ -45,11 +78,27 @@ class UserController extends Controller
             return response()->json(["message"=>"Registeration failed ",
             "status"=>false,"errors"=>$validator->messages()->all()]);
         } else {
+
+            $roles =  array("patient","doctor","hospital");
+            if(!in_array($request['role'],$roles)){
+
+                return response()->json([
+                    ['message'=> 'Role must be patient,doctor or hospital','status'=>false,
+                    "errors"=>'Role must be patient, doctor or hospital',
+                    ]
+                ]);
+
+
+            }
+
+            $request['role_id'] = array_search($request['role'],$roles) + 1;
+
+
             $request['user_id'] = ($this->uniqueUserId());
             $request['password'] = Hash::make($request['password']);
 
-            $request['user_type'] =  strtolower($request['user_type']);
-            $request['user_type_int'] =  $this->getUserTypeInt(strtolower($request['user_type']));
+            // $request['user_type'] =  strtolower($request['user_type']);
+            // $request['user_type_int'] =  $this->getUserTypeInt(strtolower($request['user_type']));
 
             $user = User::create($request->all());
             $user = User::find($user->id);
@@ -137,9 +186,36 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(User $user,Request $request)
     {
         //
+        $user = User::find($request->id);
+
+        $validator = Validator::make($request->all(),[
+           
+            
+            'user_id' => ['required', 'string', 'max:255'],
+            
+        ]);
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"Failed to fetch user ",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        } else {
+
+            $user = User::where("id",$request->user_id)->first();
+
+
+            return response()->json([
+                ['message'=> ' successful','status'=>true,
+               
+                "data"=>$user->toArray()]
+            ]);
+
+        }
+
+
     }
 
     /**
