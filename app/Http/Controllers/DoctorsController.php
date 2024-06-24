@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 
 
@@ -16,6 +17,35 @@ use App\Models\User;
 class DoctorsController extends Controller
 {
     //
+
+    public function getDoctors(Request $request){
+        //Auth::guard('api')->check();
+         //
+        //  if(!Auth::guard('api')->check()){
+
+        //     return response()->json(["message"=>"Token validation failed",
+        //     "status"=>false,"errors"=>$validator->messages()->all()]);
+        //  }
+         $validator = Validator::make($request->all(),[
+           
+            'user_id' =>  ['required' ],
+           
+        ]);
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"Doctors fetch failed ",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        }
+
+        $users = User::where("role","doctor")->orderBy("id","desc")->get();
+            return response()->json([
+                ['message'=> 'Patients successfully fetched','status'=>true,
+              
+                "data"=>$users->toArray()]
+            ]);
+
+    }
 
     public function getPatients(Request $request)
     {
