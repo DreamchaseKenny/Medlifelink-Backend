@@ -40,6 +40,8 @@ class User extends Authenticatable
         'address',
         'specialization',
         'password',
+        'consultation_amount',
+        'dob'
     ];
 
     /**

@@ -19,13 +19,15 @@ use Illuminate\Support\Facades\Route;
 Route::post('/create_user', [App\Http\Controllers\UserController::class, 'create'])->name("create_user");
 Route::post('/login_user', [App\Http\Controllers\UserController::class, 'loginUser'])->name("login_user");
 Route::post('/get_user', [App\Http\Controllers\UserController::class, 'show'])->name("user.show");
+//update user
+Route::post('/update_user', [App\Http\Controllers\UserController::class, 'update'])->name("user.update");
 
 
 
 
 ///Appointments Route
 Route::post('/create_appointment', [App\Http\Controllers\AppointmentController::class, 'bookAppointment'])->name("create_appointment");
-Route::post('/list_appointments', [App\Http\Controllers\MedicationController::class, 'index'])->name("appointment.index");
+Route::post('/list_appointments', [App\Http\Controllers\AppointmentController::class, 'index'])->name("appointment.index");
 
 
 ///Medication Route
@@ -38,7 +40,7 @@ Route::post('/create_medication', [App\Http\Controllers\MedicationController::cl
 
 Route::post('/doctor/create_patient', [App\Http\Controllers\DoctorsController::class, 'createUser'])->name("hospital.createuser");
 //patients
-Route::post('/doctor/patients', [App\Http\Controllers\DoctorsController::class, 'getPatients'])->name("hospital.patients");
+Route::post('/doctor/patients', [App\Http\Controllers\DoctorsController::class, 'getPatients'])->name("doctor.patients");
 
 
 ///////////////////////HOSPIAL/////////////////////
@@ -51,6 +53,11 @@ Route::post('/hospital/patients', [App\Http\Controllers\HospitalController::clas
 Route::post('/hospital/create_user', [App\Http\Controllers\HospitalController::class, 'createUser'])->name("hospital.createuser");
 ///get doctors
 Route::post('/doctors', [App\Http\Controllers\DoctorsController::class, 'getDoctors'])->name("doctors.getDoctors");
+
+///wallet
+//fundWallet
+Route::post('/fund_wallet', [App\Http\Controllers\TransactionsController::class, 'fundWallet'])->name("wallet.fund");
+
 
 
 

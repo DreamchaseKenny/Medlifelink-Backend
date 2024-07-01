@@ -30,6 +30,10 @@ return new class extends Migration
             $table->string('role')->default('patient');
             $table->string('created_by')->default('');
             $table->string('rating')->default('');
+
+            $table->string('dob')->default('');
+            $table->string('consultation_amount')->default(0);
+
             
             $table->string('role_id')->default(1);
             $table->timestamp('email_verified_at')->nullable();

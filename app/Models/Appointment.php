@@ -14,5 +14,6 @@ class Appointment extends Model
         'appointment_time',
         'title',
         'description',
+        'status',
     ];
 }

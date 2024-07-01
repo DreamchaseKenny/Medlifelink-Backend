@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->integer("user_id");
+            $table->string("status")->default("pending");
+            $table->float("amount");
+            $table->string("title");
+            $table->string("description");
+            $table->integer("credited_to");
+            $table->string("gateway");
+            $table->string("reference");
+            $table->string("type");
+
             $table->timestamps();
         });
     }

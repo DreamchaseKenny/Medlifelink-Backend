@@ -52,6 +52,7 @@
 
     </div>
 
+
    ////////////////////////////////////////////////////////////////////////
 
     <button class="accordion">Login</button>
@@ -352,6 +353,127 @@ note:sleep well
 
 
 ////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Update user</button>
+
+<div class="panel">
+     <div>
+         http://127.0.0.1:8000/api/update_user
+         <h2>Post Request</h2>
+         <p>
+             {
+         'phone' : 09087877766,
+         'fullname' => mark john,
+         'country_code' => +234,
+         'country' => Nigeria,
+         'gender' => male,
+         'address' => 123 enugu road,
+         'dob' => 2000-4-12,
+         "user_id"=>3,
+             
+             }
+         </p>
+     </div>
+
+     <div>
+         <h2>Response</h2>
+         <p>
+         {
+ "message": " successful",
+ "status": true,
+ "data": {
+     "id": 1,
+     "user_id": "LTLQN71L",
+     "fullname": "postial doctor",
+     "balance": 0,
+     "email": "email@gmail.com",
+     "username": "martins",
+     "phone": "098988834",
+     "country_code": "+234",
+     "country": "Nigeria",
+     "gender": "male",
+     "address": "123 address",
+     "specialization": "Toot",
+     "verification_code": null,
+     "email_verified": 0,
+     "status": "active",
+     "role": "patient",
+     "created_by": "",
+     "rating": "",
+     "dob": "dob",
+     "consultation_amount": "0",
+     "role_id": "1",
+     "email_verified_at": null,
+     "weight": "0",
+     "height": "0",
+     "blood_pressure": "",
+     "glucose_level": "",
+     "photo": "",
+     "created_at": "2024-06-26T08:35:56.000000Z",
+     "updated_at": "2024-06-26T08:35:56.000000Z"
+ }
+}
+         </p>
+     </div>
+
+ </div>
+
+
+ 
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Fund wallet</button>
+
+<div class="panel">
+     <div>
+         http://127.0.0.1:8000/api/fund_wallet
+         <h2>Post Request</h2>
+         <p>
+             {
+         'amount' : 500,
+         'user_id' : 1,
+         'reference' : 7869088ggiig,
+         'gateway' : paystack,
+         'description' : "wallet funding",
+         
+        
+             
+             }
+         </p>
+     </div>
+
+     <div>
+         <h2>Response</h2>
+         <p>
+         {
+    "message": "This transaction has been credited before",
+    "status": false,
+    "data": 
+        {
+            "id": 1,
+            "user_id": 1,
+            "status": "pending",
+            "amount": 5000,
+            "title": "wallet_funding",
+            "description": "jjj",
+            "credited_to": 1,
+            "gateway": "paystack",
+            "reference": "88888888888888888888888",
+            "type": "credit",
+            "created_at": "2024-06-26T09:47:40.000000Z",
+            "updated_at": "2024-06-26T09:47:40.000000Z"
+        }
+    
+}
+         </p>
+     </div>
+
+ </div>
+    
+
     
 
 

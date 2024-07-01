@@ -184,6 +184,69 @@ username:ugwumba
 </div>
 
 
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">List of Doctors </button>
+<div class="panel">
+    <div>
+    http://127.0.0.1:8000/api/doctors
+        <h2>Post Request</h2>
+        <p>
+            {
+                user_id:1
+
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+        
+    {
+        "message": "Doctors  successful fetched",
+        "status": true,
+        
+        "data":[ 
+            {
+            "id": 11,
+            "user_id": "FZ2IEX7M",
+            "fullname": "postial doctor",
+            "balance": 0,
+            "email": "ugwumba1@gmail.com",
+            "username": "ugwumba1",
+            "phone": "098988834",
+            "country_code": "+234",
+            "country": "Nigeria",
+            "gender": "male",
+            "address": "123 address",
+            "specialization": "Toot",
+            "verification_code": null,
+            "email_verified": 0,
+            "status": "active",
+            "role": "patient",
+            "created_by": "8",
+            "rating": "",
+            "role_id": "1",
+            "email_verified_at": null,
+            "weight": "0",
+            "height": "0",
+            "blood_pressure": "",
+            "glucose_level": "",
+            "photo": "",
+            "created_at": "2024-05-09T16:24:22.000000Z",
+            "updated_at": "2024-05-09T16:24:22.000000Z"
+        }
+
+        ]
+    }
+
+        </p>
+    </div>
+
+</div>
+
+
 
 @include('layouts.footer')
 

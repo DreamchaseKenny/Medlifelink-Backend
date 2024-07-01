@@ -108,11 +108,11 @@ class UserController extends Controller
             
         //    }catch(Exception $e){}
 
-            return response()->json([
+            return response()->json(
                 ['message'=> 'Registeration successful','status'=>true,
                 "token"=> $token,
-                "data"=>$user->toArray()]
-            ]);
+                "data"=>$user]
+            );
         }
     }
 
@@ -144,8 +144,8 @@ class UserController extends Controller
                 // user doesn't exist
 
                 return response()->json([
-                    ['message'=> 'user not found','status'=>false,
-                    ]
+                    'message'=> 'user not found','status'=>false,
+                    
                 ]);
 
              }
@@ -155,8 +155,8 @@ class UserController extends Controller
                 // password incorrect
 
                 return response()->json([
-                    ['message'=> 'Incorrect cresidential','status'=>false,
-                    ]
+                    'message'=> 'Incorrect cresidential','status'=>false,
+                    
                 ]);
 
 
@@ -165,9 +165,9 @@ class UserController extends Controller
             $token = $user->createToken('Token')->plainTextToken;
 
             return response()->json([
-                ['message'=> 'Login successful','status'=>true,
+                'message'=> 'Login successful','status'=>true,
                 "token"=> $token,
-                "data"=>$user->toArray()]
+                "data"=>$user
             ]);
 
         }
@@ -210,7 +210,7 @@ class UserController extends Controller
             return response()->json([
                 ['message'=> ' successful','status'=>true,
                
-                "data"=>$user->toArray()]
+                "data"=>$user]
             ]);
 
         }
@@ -229,9 +229,66 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
         //
+        $validator = Validator::make($request->all(),[
+
+            
+           
+            'phone' => ['required', 'string', 'min:2'],
+            'fullname' => ['required', 'string', 'min:2'],
+            'country_code' => ['required', 'string', 'min:2'],
+            'country' => ['required', 'string', 'min:2'],
+            'gender' => ['required', 'string', 'min:2'],
+            'address' => ['required', 'string', 'min:2'],
+            'dob' => ['required', 'string', 'min:2'],
+            "user_id"=>['required', 'integer', 'min:1'],
+            
+            
+           
+           
+        ]);
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"user update failed",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        } else {
+
+            $user = User::where("id",$request->user_id)->first();
+
+
+          if($user == null){
+
+            return response()->json([
+                'message'=> ' user not found','status'=>false,
+               
+               
+            ]);
+
+          }
+          $user->update([
+
+            'phone' => $request->phone,
+            'fullname' => $request->fullname,
+            'country_code' => $request->country_code,
+            'country' => $request->country,
+            'gender' => $request->gender,
+            'address' => $request->address,
+            'dob' => $request->dob,
+
+          ]);
+
+            return response()->json([
+                'message'=> ' successful','status'=>true,
+               
+                "data"=>$user->toArray()
+            ]);
+
+          
+        }
+
     }
 
     /**
@@ -260,4 +317,6 @@ function getUserTypeInt($userType){
 
     }
 }
+
+
 }

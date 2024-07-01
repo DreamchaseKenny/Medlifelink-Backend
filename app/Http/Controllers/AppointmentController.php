@@ -27,12 +27,12 @@ class AppointmentController extends Controller
             return response()->json(["message"=>"appointments fetch failed ",
             "status"=>false,"errors"=>$validator->messages()->all()]);
         } else {
-            $medications = Medication::where("booked_by",$request->user_id)->orWhere("booked_with",$request->user_id)->orderBy("id","desc")->get();
+            $appointment = Appointment::where("booked_by",$request->user_id)->orWhere("booked_with",$request->user_id)->orderBy("id","desc")->get();
             return response()->json([
-                ['message'=> 'appointments successfully fetched','status'=>true,
+                'message'=> 'appointments successfully fetched','status'=>true,
               
-                "data"=>$medications->toArray()]
-            ]);
+                "data"=>$appointment->toArray()]
+            );
 
         }
     }
@@ -72,15 +72,17 @@ class AppointmentController extends Controller
 
             }
 
+            $request['status'] = "pending";
+
 
 
 
             $appointment = Appointment::create($request->all());
-            return response()->json([
+            return response()->json(
                 ['message'=> 'Registeration successful','status'=>true,
               
-                "data"=>$appointment->toArray()]
-            ]);
+                "data"=>$appointment]
+            );
 
         }
     }

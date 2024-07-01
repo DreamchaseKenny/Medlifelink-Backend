@@ -40,9 +40,9 @@ class DoctorsController extends Controller
 
         $users = User::where("role","doctor")->orderBy("id","desc")->get();
             return response()->json([
-                ['message'=> 'Patients successfully fetched','status'=>true,
+                'message'=> 'Doctors successfully fetched','status'=>true,
               
-                "data"=>$users->toArray()]
+                "data"=>$users->toArray()
             ]);
 
     }
@@ -62,10 +62,10 @@ class DoctorsController extends Controller
             "status"=>false,"errors"=>$validator->messages()->all()]);
         } else {
             $users = User::where("created_by",$request->doctor_id)->where("role","patient")->orderBy("id","desc")->get();
-            return response()->json([
+            return response()->json(
                 ['message'=> 'Patients successfully fetched','status'=>true,
               
-                "data"=>$users->toArray()]
+                "data"=>$users->toArray()
             ]);
 
         }
@@ -145,10 +145,10 @@ class DoctorsController extends Controller
             
         //    }catch(Exception $e){}
 
-            return response()->json([
+            return response()->json(
                 ['message'=> 'Registeration successful','status'=>true,
                 "token"=> $token,
-                "data"=>$user->toArray()]
+                "data"=>$user->toArray()
             ]);
         }
     }
