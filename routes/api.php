@@ -28,6 +28,9 @@ Route::post('/update_user', [App\Http\Controllers\UserController::class, 'update
 ///Appointments Route
 Route::post('/create_appointment', [App\Http\Controllers\AppointmentController::class, 'bookAppointment'])->name("create_appointment");
 Route::post('/list_appointments', [App\Http\Controllers\AppointmentController::class, 'index'])->name("appointment.index");
+Route::post('/appointment/status', [App\Http\Controllers\AppointmentController::class, 'update'])->name("appointment.status");
+Route::post('/appointment/delete', [App\Http\Controllers\AppointmentController::class, 'destroy'])->name("appointment.delete");
+
 
 
 ///Medication Route

@@ -470,6 +470,81 @@ note:sleep well
 }
          </p>
      </div>
+     </div>
+
+
+
+      
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Update Appointment status</button>
+
+<div class="panel">
+     <div>
+         http://127.0.0.1:8000/api/appointment/status
+         <h2>Post Request</h2>
+         <p>
+             {
+         
+         'appointment_id' : 1,
+         'action' : pending || approve || cancel,
+        
+         
+        
+             
+             }
+         </p>
+     </div>
+
+     <div>
+         <h2>Response</h2>
+         <p>
+         {
+    "message": "successfull",
+    "status": true,
+    
+    
+}
+         </p>
+     </div>
+     </div>
+
+
+     ////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Update Appointment status</button>
+
+<div class="panel">
+     <div>
+         http://127.0.0.1:8000/api/appointment/delete
+         <h2>Post Request</h2>
+         <p>
+             {
+         
+         'appointment_id' : 1,
+         
+        
+         
+        
+             
+             }
+         </p>
+     </div>
+
+     <div>
+         <h2>Response</h2>
+         <p>
+         {
+    "message": "successfull",
+    "status": true,
+    
+    
+}
+         </p>
+     </div>
+
+
+     
 
  </div>
     

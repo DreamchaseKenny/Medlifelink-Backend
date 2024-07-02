@@ -27,11 +27,31 @@ class AppointmentController extends Controller
             return response()->json(["message"=>"appointments fetch failed ",
             "status"=>false,"errors"=>$validator->messages()->all()]);
         } else {
-            $appointment = Appointment::where("booked_by",$request->user_id)->orWhere("booked_with",$request->user_id)->orderBy("id","desc")->get();
+            $appointments = Appointment::where("booked_by",$request->user_id)->orWhere("booked_with",$request->user_id)->orderBy("id","desc")->get();
+
+            $appointmentList = [];
+
+            foreach($appointments as $appointment){
+                $booked_with = User::find($appointment->booked_with);
+                $booked_by = User::find($appointment->booked_by);
+
+                $appointment["booked_with"] =  $booked_with;
+                $appointment["booked_by"] =  $booked_by;
+                array_push($appointmentList,$appointment);
+
+                
+            }
+
+
+
+            
+
+
+
             return response()->json([
                 'message'=> 'appointments successfully fetched','status'=>true,
               
-                "data"=>$appointment->toArray()]
+                "data"=>$appointmentList]
             );
 
         }
@@ -66,7 +86,7 @@ class AppointmentController extends Controller
 
             if($booked_by == null ||  $booked_with == null){
 
-                return response()->json(["message"=>"Booking falied ",
+                return response()->json(["message"=>"appointment not found",
                 "status"=>false,"errors"=>"user not found"]);
 
 
@@ -114,9 +134,39 @@ class AppointmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Appointment $appointment)
+    public function update(Request $request)
     {
         //
+        $appointment = Appointment::find($request->appointment_id);
+
+        if($appointment == null){
+            return response()->json(["message"=>"appointment not found",
+                "status"=>false,"errors"=>"appointment not found"]);
+        }
+
+        if($request->action == "pending"){
+            $appointment->status = "pending";
+
+        }
+        if($request->action == "approve"){
+            $appointment->status = "active";
+
+        }
+        if($request->action == "cancel"){
+            $appointment->status = "canceled";
+
+        }else if($appointment == null){
+            return response()->json(["message"=>"appointment not found",
+                "status"=>false,"errors"=>"invalid action"]);
+        }
+
+        $appointment->save();
+
+        if($appointment == null){
+            return response()->json(["message"=>"Successfully $request->action",
+                "status"=>true]);
+        }
+
     }
 
     /**
@@ -125,5 +175,20 @@ class AppointmentController extends Controller
     public function destroy(Appointment $appointment)
     {
         //
+
+        $appointment = Appointment::find($request->appointment_id);
+
+        if($appointment == null){
+            return response()->json(["message"=>"appointment not found",
+                "status"=>false,"errors"=>"appointment not found"]);
+        }
+
+        $appointment->save();
+
+        if($appointment == null){
+            return response()->json(["message"=>"Successfully deleted",
+                "status"=>true]);
+        }
+
     }
 }
