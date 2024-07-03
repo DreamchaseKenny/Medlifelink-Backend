@@ -512,7 +512,7 @@ note:sleep well
 
      ////////////////////////////////////////////////////////////////////////
 
-<button class="accordion">Update Appointment status</button>
+<button class="accordion">Delete Appointment </button>
 
 <div class="panel">
      <div>

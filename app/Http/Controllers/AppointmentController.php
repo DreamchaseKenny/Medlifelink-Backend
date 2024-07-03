@@ -147,32 +147,34 @@ class AppointmentController extends Controller
         if($request->action == "pending"){
             $appointment->status = "pending";
 
-        }
+        }else
         if($request->action == "approve"){
             $appointment->status = "active";
 
-        }
+        }else
         if($request->action == "cancel"){
             $appointment->status = "canceled";
 
-        }else if($appointment == null){
-            return response()->json(["message"=>"appointment not found",
+        }else{
+            return response()->json(["message"=>"invalid action (action must be pending,approve or cancel)",
                 "status"=>false,"errors"=>"invalid action"]);
         }
 
         $appointment->save();
 
-        if($appointment == null){
+       
             return response()->json(["message"=>"Successfully $request->action",
-                "status"=>true]);
-        }
+                "status"=>true,
+                "data"=> $appointment
+            ]);
+        
 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Appointment $appointment)
+    public function destroy(Request $request)
     {
         //
 
@@ -183,12 +185,12 @@ class AppointmentController extends Controller
                 "status"=>false,"errors"=>"appointment not found"]);
         }
 
-        $appointment->save();
+        $appointment->delete();
 
-        if($appointment == null){
+       
             return response()->json(["message"=>"Successfully deleted",
                 "status"=>true]);
-        }
+        
 
     }
 }
