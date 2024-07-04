@@ -62,6 +62,11 @@ Route::post('/doctors', [App\Http\Controllers\DoctorsController::class, 'getDoct
 Route::post('/fund_wallet', [App\Http\Controllers\TransactionsController::class, 'fundWallet'])->name("wallet.fund");
 
 
+//test mail
+Route::post('/send', [App\Http\Controllers\SendMailController::class, 'index'])->name("mail.index");
+
+
+
 
 
 

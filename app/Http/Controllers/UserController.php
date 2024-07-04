@@ -8,10 +8,15 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\MailController;
+
+
+
 
 class UserController extends Controller
 {
 
+    
 
 
 
@@ -107,6 +112,11 @@ class UserController extends Controller
         //     later(300, $this->sendEmailCode($request->email,$request->fullname));
             
         //    }catch(Exception $e){}
+
+        //SEND mail
+        (new MailController)->sendWelcomeMail($user);
+
+        
 
             return response()->json(
                 ['message'=> 'Registeration successful','status'=>true,
