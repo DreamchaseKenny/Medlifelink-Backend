@@ -6,6 +6,7 @@ use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\MailController;
 
 class AppointmentController extends Controller
 {
@@ -98,6 +99,15 @@ class AppointmentController extends Controller
 
 
             $appointment = Appointment::create($request->all());
+            $mailController = (new MailController);
+            ///send email to booked with (booker)
+            $message = "A $booked_by->fullname has requested for an appointment without";
+            $mailController->appointmentMail($appointment,$booked_with,$message);
+
+            ///send email to booked with (booker)
+            $message = "You have sent an appointment request to $booked_with->fullname ";
+            $mailController->appointmentMail($appointment,$booked_by,$message);
+
             return response()->json(
                 ['message'=> 'Registeration successful','status'=>true,
               

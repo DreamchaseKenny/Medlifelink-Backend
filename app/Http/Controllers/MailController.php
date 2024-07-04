@@ -22,4 +22,19 @@ class MailController extends Controller
 
         //return "Email has been sent.";
     }
+
+    public function appointmentMail($appointment,$user,$message)
+    {
+        $content = [
+            'subject' => 'MdlifeLink Appointment',
+            'message' => $message,
+            'appointment' => $appointment,
+            'user' => $user,
+            'view' => 'mails.appointment'
+        ];
+
+        Mail::to($content['user']->email)->send(new SampleMail($content));
+
+        //return "Email has been sent.";
+    }
 }
