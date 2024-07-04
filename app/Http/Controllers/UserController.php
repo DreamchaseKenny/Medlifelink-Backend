@@ -301,6 +301,131 @@ class UserController extends Controller
 
     }
 
+    public function updateProfessionalInfo(Request $request)
+    {
+        //
+        $validator = Validator::make($request->all(),[
+
+            
+           
+            'address' => ['required', 'string', 'min:2'],
+            'consultation_amount' => ['required', 'numeric'],
+            'specialization' => ['required', 'string', 'min:2'],
+            'photo' => ['required', 'string', 'min:2'],
+            "user_id"=>['required', 'integer', 'min:1'],
+            
+            
+           
+           
+        ]);
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"user update failed",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        } else {
+
+            $user = User::where("id",$request->user_id)->first();
+
+
+          if($user == null){
+
+            return response()->json([
+                'message'=> ' user not found','status'=>false,
+               
+               
+            ]);
+
+          }
+          $user->update([
+
+            'photo' => $request->photo,
+            'specialization' => $request->specialization,
+            'consultation_amount' => $request->consultation_amount,
+            'address' => $request->address
+            
+
+          ]);
+
+          
+
+            return response()->json([
+                'message'=> ' successful','status'=>true,
+               
+                "data"=>$user->toArray()
+            ]);
+
+          
+        }
+
+    }
+
+
+    public function updatePassword(Request $request)
+    {
+        //
+        $validator = Validator::make($request->all(),[
+
+            
+           
+            'password' => ['required', 'string', 'min:6'],
+            'new_password' => ['required', 'string', 'min:6'],
+            "user_id"=>['required', 'integer', 'min:1'],
+            
+            
+           
+           
+        ]);
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"user update failed",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        } else {
+
+            $user = User::where("id",$request->user_id)->first();
+           
+
+
+          if($user == null){
+
+            return response()->json([
+                'message'=> ' user not found','status'=>false,
+               
+               
+            ]);
+
+          }else if (!Hash::check($request->password, $user->password)){
+
+            return response()->json([
+                'message'=> 'Incorrect password','status'=>false,
+               
+               
+            ]);
+
+          }
+
+          $user->update([
+
+            'password' => ($request->new_password)
+            
+            
+
+          ]);
+
+          
+
+            return response()->json([
+                'message'=> ' successful','status'=>true,
+               
+                "data"=>$user->toArray()
+            ]);
+
+          
+        }
+
+    }
+
     /**
      * Remove the specified resource from storage.
      */

@@ -39,9 +39,11 @@ class User extends Authenticatable
         'gender',
         'address',
         'specialization',
-        'password',
+        
         'consultation_amount',
-        'dob'
+        'dob',
+        'photo',
+      
     ];
 
     /**

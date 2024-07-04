@@ -21,6 +21,10 @@ Route::post('/login_user', [App\Http\Controllers\UserController::class, 'loginUs
 Route::post('/get_user', [App\Http\Controllers\UserController::class, 'show'])->name("user.show");
 //update user
 Route::post('/update_user', [App\Http\Controllers\UserController::class, 'update'])->name("user.update");
+Route::post('/user/update_prof_info', [App\Http\Controllers\UserController::class, 'updateProfessionalInfo'])->name("user.update_prof_info");
+Route::post('/user/update_password', [App\Http\Controllers\UserController::class, 'updatePassword'])->name("user.update_password");
+
+
 
 
 
