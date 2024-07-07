@@ -254,6 +254,12 @@ class UserController extends Controller
             'address' => ['required', 'string', 'min:2'],
             'dob' => ['required', 'string', 'min:2'],
             "user_id"=>['required', 'integer', 'min:1'],
+
+            'address' => ['required', 'string', 'min:2'],
+            'consultation_amount' => ['required', 'numeric'],
+            'specialization' => ['required', 'string', 'min:2'],
+            'photo' => ['required', 'string', 'min:2'],
+
             
             
            
@@ -288,6 +294,12 @@ class UserController extends Controller
             'address' => $request->address,
             'dob' => $request->dob,
 
+            'photo' => $request->photo,
+            'specialization' => $request->specialization,
+            'consultation_amount' => $request->consultation_amount,
+            'address' => $request->address
+            
+            
           ]);
 
             return response()->json([
@@ -407,7 +419,7 @@ class UserController extends Controller
 
           $user->update([
 
-            'password' => ($request->new_password)
+            'password' => (Hash::make($request->new_password))
             
             
 
@@ -452,6 +464,123 @@ function getUserTypeInt($userType){
 
     }
 }
+
+function forgotPassword(Request $request){
+
+    $validator = Validator::make($request->all(),[
+
+            
+           
+      
+        "email"=>['required', 'email'],
+        
+        
+       
+       
+    ]);
+
+    if($validator->fails()){
+      
+        return response()->json(["message"=>"email is required",
+        "status"=>false,"errors"=>$validator->messages()->all()]);
+    } 
+
+        $user = User::where("email",$request->email)->first();
+       
+
+
+      if($user == null){
+
+        return response()->json([
+            'message'=> ' user not found','status'=>false,
+           
+           
+        ]);
+
+      }
+
+
+      ////send OTP mail
+      $otp = rand(100000, 999999);
+      (new MailController)->forgetPasswordMail($user, $otp);
+
+      $user->update(["verification_code"=>$otp]);
+
+      return response()->json([
+        'message'=> ' otp sent','status'=>true,
+       
+       
+    ]);
+}
+
+
+
+public function changePassword(Request $request)
+{
+    //
+    $validator = Validator::make($request->all(),[
+
+        
+       
+        'otp' => ['required', 'string', 'min:6'],
+        'new_password' => ['required', 'string', 'min:6'],
+        "email"=>['required', 'email'],
+        
+        
+       
+       
+    ]);
+
+    if($validator->fails()){
+      
+        return response()->json(["message"=>"user update failed",
+        "status"=>false,"errors"=>$validator->messages()->all()]);
+    } else {
+
+        $user = User::where("email",$request->email)->first();
+       
+
+
+      if($user == null){
+
+        return response()->json([
+            'message'=> ' user not found','status'=>false,
+           
+           
+        ]);
+
+      }else if ($user->verification_code != $request->otp){
+
+        return response()->json([
+            'message'=> 'Incorrect password','status'=>false,
+           
+           
+        ]);
+
+      }
+
+      $user->update([
+
+        'password' => (Hash::make($request->new_password))
+        
+        
+
+      ]);
+
+      
+
+        return response()->json([
+            'message'=> ' successful','status'=>true,
+           
+            "data"=>$user->toArray()
+        ]);
+
+      
+    }
+
+}
+
+
 
 
 }

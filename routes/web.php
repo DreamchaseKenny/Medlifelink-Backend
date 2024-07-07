@@ -25,3 +25,7 @@ Route::get('/hospital', function () {
 Route::get('/admin', function () {
     return view('admin');
 });
+
+Route::get('/transaction', function () {
+    return view('transaction');
+});

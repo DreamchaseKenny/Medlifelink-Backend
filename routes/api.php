@@ -23,6 +23,11 @@ Route::post('/get_user', [App\Http\Controllers\UserController::class, 'show'])->
 Route::post('/update_user', [App\Http\Controllers\UserController::class, 'update'])->name("user.update");
 Route::post('/user/update_prof_info', [App\Http\Controllers\UserController::class, 'updateProfessionalInfo'])->name("user.update_prof_info");
 Route::post('/user/update_password', [App\Http\Controllers\UserController::class, 'updatePassword'])->name("user.update_password");
+Route::post('/user/forgotpassword', [App\Http\Controllers\UserController::class, 'forgotPassword'])->name("user.forgotpassword");
+
+Route::post('/user/changePassword', [App\Http\Controllers\UserController::class, 'changePassword'])->name("user.changePassword");
+
+
 
 
 
@@ -64,6 +69,12 @@ Route::post('/doctors', [App\Http\Controllers\DoctorsController::class, 'getDoct
 ///wallet
 //fundWallet
 Route::post('/fund_wallet', [App\Http\Controllers\TransactionsController::class, 'fundWallet'])->name("wallet.fund");
+
+
+///transactions
+Route::get('/user/transactions/{user_id}', [App\Http\Controllers\TransactionsController::class, 'userTransactions'])->name("user.transactions");
+
+
 
 
 //test mail

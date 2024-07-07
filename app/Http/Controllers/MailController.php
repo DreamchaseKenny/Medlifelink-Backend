@@ -37,4 +37,33 @@ class MailController extends Controller
 
         //return "Email has been sent.";
     }
+
+
+    public function forgetPasswordMail($userModel,$otp)
+    {
+        $content = [
+            'subject' => 'Forget password request',
+            'model' => $userModel,
+            'view' => 'mails.forgetpassword',
+            'otp'=>$otp
+        ];
+
+        Mail::to($content['model']->email)->send(new SampleMail($content));
+
+        //return "Email has been sent.";
+    }
+
+    public function notification($userModel,$subject,$message)
+    {
+        $content = [
+            'subject' => $subject,
+            'model' => $userModel,
+            'view' => 'mails.notification',
+            'message'=>$message
+        ];
+
+        Mail::to($content['model']->email)->send(new SampleMail($content));
+
+        //return "Email has been sent.";
+    }
 }

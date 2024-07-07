@@ -6,6 +6,8 @@ use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\MailController;
 
 
 class TransactionsController extends Controller
@@ -15,21 +17,13 @@ class TransactionsController extends Controller
 
         //
         $validator = Validator::make($request->all(),[
-   
-               
-              
-           
+     
            'amount' => ['required', 'integer', 'min:1000'],
            "user_id"=>['required', 'integer', 'min:1'],
            "reference"=>['required', 'string', 'min:1'],
            "gateway"=>['required', 'string', 'min:1'],
            "description"=>['required', 'string', 'min:1'],
-   
-           
-           
-          
-          
-       ]);
+   ]);
    
        if($validator->fails()){
          
@@ -78,6 +72,10 @@ class TransactionsController extends Controller
 
     ]);
 
+    $message = "Wallet funding of N$request->amount is successful";
+
+    (new MailController)->notification($user,"wallet funding",$message);
+
 
     return response()->json(["message"=>"Transaction successful",
         "status"=>true,
@@ -95,9 +93,36 @@ class TransactionsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function userTransactions(Request $request,$user_id)
     {
         //
+
+          //
+          $validator = Validator::make($request->route()->parameters(),[
+         "user_id"=>['required']
+            ]);
+    
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"validation error2",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        }
+ 
+        $user = User::find($user_id);
+        if($user == null){
+ 
+         return response()->json(["message"=>"User not found",
+         "status"=>false]);
+ 
+        }
+
+        $transactions = Transaction::where('user_id',$user_id)->get();
+
+        return response()->json(["message"=>"success",
+        "status"=>true, "data"=>$transactions]);
+
+        
+
     }
 
     /**

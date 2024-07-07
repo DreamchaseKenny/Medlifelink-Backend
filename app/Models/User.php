@@ -43,6 +43,7 @@ class User extends Authenticatable
         'consultation_amount',
         'dob',
         'photo',
+        'verification_code'
       
     ];
 

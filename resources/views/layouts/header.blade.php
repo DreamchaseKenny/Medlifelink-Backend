@@ -61,6 +61,9 @@
       <li class="nav-item">
         <a class="nav-link " href="/admin">Admin</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/transaction">Transactions</a>
+      </li>
     </ul>
 
    

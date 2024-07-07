@@ -683,11 +683,113 @@ note:sleep well
 }
          </p>
      </div>
+</div>
 
 
-     
+////////////////////////////////////////////////////////////////////////
 
- </div>
+<button class="accordion">Forgot password </button>
+
+<div class="panel">
+     <div>
+     http://127.0.0.1:8000/api/user/forgotpassword
+         <h2>Post Request</h2>
+         <p>
+             {
+         
+         'email' : user@gmail.com,
+        
+         
+        
+         
+        
+             
+             }
+         </p>
+     </div>
+
+     <div>
+         <h2>Response</h2>
+         <p>
+         {
+    "message": " otp sent",
+    "status": true
+}
+         </p>
+     </div>
+</div>
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Change password </button>
+
+<div class="panel">
+     <div>
+     http://127.0.0.1:8000/api/user/changePassword
+         <h2>Post Request</h2>
+         <p>
+             {
+         
+         'email' : user@gmail.com,
+         "new_password":"2345678",
+         "otp":089898
+         
+        
+         
+        
+             
+             }
+         </p>
+     </div>
+
+     <div>
+         <h2>Response</h2>
+         <p>
+         {
+    "message": " successful",
+    "status": true,
+    "data": {
+        "id": 3,
+        "user_id": "23SG5IQW",
+        "fullname": "newname",
+        "balance": 0,
+        "email": "zhinzeu@gmail.com",
+        "username": "zhinzeu",
+        "phone": "098988834",
+        "country_code": "+234",
+        "country": "Nigeria",
+        "gender": "male",
+        "address": "123 address hill view road",
+        "specialization": "dentist",
+        "verification_code": null,
+        "email_verified": 0,
+        "status": "active",
+        "role": "patient",
+        "created_by": "",
+        "rating": "",
+        "dob": "12-45-899",
+        "consultation_amount": "9000",
+        "role_id": "1",
+        "email_verified_at": null,
+        "weight": "0",
+        "height": "0",
+        "blood_pressure": "",
+        "glucose_level": "",
+        "photo": "link to photos",
+        "created_at": "2024-07-04T00:57:41.000000Z",
+        "updated_at": "2024-07-04T08:27:33.000000Z"
+    }
+}
+         </p>
+     </div>
+</div>
+
+
+////////////////////////////////////////////////////////////////////////
     
     
 
