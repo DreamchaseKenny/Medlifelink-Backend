@@ -256,9 +256,9 @@ class UserController extends Controller
             "user_id"=>['required', 'integer', 'min:1'],
 
             'address' => ['required', 'string', 'min:2'],
-            'consultation_amount' => ['required', 'numeric'],
-            'specialization' => ['required', 'string', 'min:2'],
-            'photo' => ['required', 'string', 'min:2'],
+            'consultation_amount' => [ 'numeric'],
+            'specialization' => [ 'string', 'min:2'],
+            'photo' => [ 'string', 'min:2'],
 
             
             
