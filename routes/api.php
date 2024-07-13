@@ -53,6 +53,9 @@ Route::post('/create_medication', [App\Http\Controllers\MedicationController::cl
 Route::post('/doctor/create_patient', [App\Http\Controllers\DoctorsController::class, 'createUser'])->name("hospital.createuser");
 //patients
 Route::post('/doctor/patients', [App\Http\Controllers\DoctorsController::class, 'getPatients'])->name("doctor.patients");
+///get patients doctors
+Route::post('/doctor/patients', [App\Http\Controllers\DoctorsController::class, 'getPatientsDoctor'])->name("patients.doctors");
+
 
 
 ///////////////////////HOSPIAL/////////////////////

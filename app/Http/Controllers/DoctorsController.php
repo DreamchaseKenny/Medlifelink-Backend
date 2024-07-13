@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Appointment;
 use Auth;
 
 
@@ -67,6 +68,57 @@ class DoctorsController extends Controller
               
                 "data"=>$users->toArray()
             ]);
+
+        }
+    }
+
+    public function getPatientsDoctor(Request $request)
+    {
+        //
+        $validator = Validator::make($request->all(),[
+           
+            'patient_id' =>  ['required' ],
+           
+        ]);
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"doctors fetch failed ",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        } else {
+           /////////////////////////////////////
+
+           $appointments = Appointment::where("booked_by",$request->patient_id)->orWhere("booked_with",$request->patient_id)->orderBy("id","desc")->get();
+
+            $doctors = [];
+
+            foreach($appointments as $appointment){
+                $booked_with = User::find($appointment->booked_with);
+                $booked_by = User::find($appointment->booked_by);
+                if($booked_by->role = "doctor"){
+                    array_push($doctors,$booked_by);
+
+                }else if($booked_with->role = "doctor"){
+                    array_push($doctors,$booked_with);
+
+                }
+               
+
+             
+               
+
+                
+            }
+
+            return response()->json([
+                'message'=> 'Doctors successfully fetched','status'=>true,
+              
+                "data"=>$doctors]
+            );
+
+
+
+           /////////////////////////////////////
 
         }
     }
