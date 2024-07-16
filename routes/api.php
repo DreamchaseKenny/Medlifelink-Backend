@@ -54,7 +54,7 @@ Route::post('/doctor/create_patient', [App\Http\Controllers\DoctorsController::c
 //patients
 Route::post('/doctor/patients', [App\Http\Controllers\DoctorsController::class, 'getPatients'])->name("doctor.patients");
 ///get patients doctors
-Route::post('/doctor/patients', [App\Http\Controllers\DoctorsController::class, 'getPatientsDoctor'])->name("patients.doctors");
+Route::post('/patients/doctor', [App\Http\Controllers\DoctorsController::class, 'getPatientsDoctor'])->name("patients.doctors");
 
 
 
@@ -82,6 +82,28 @@ Route::get('/user/transactions/{user_id}', [App\Http\Controllers\TransactionsCon
 
 //test mail
 Route::post('/send', [App\Http\Controllers\SendMailController::class, 'index'])->name("mail.index");
+
+
+
+
+////Subscribers ApI
+
+Route::get('/subscribers/{user_id}', [App\Http\Controllers\SubscriberController::class, 'index'])->name("subscriber.index");
+Route::post('/subscriber/create', [App\Http\Controllers\SubscriberController::class, 'store'])->name("subscriber.create");
+Route::post('/subscriber/delete', [App\Http\Controllers\SubscriberController::class, 'destroy'])->name("subscriber.delete");
+Route::get('/subscriber/unsubscribe/{email}', [App\Http\Controllers\SubscriberController::class, 'unsubscribe'])->name("subscriber.unsubscribe");
+
+////Contact ApI
+
+Route::get('/contact/{user_id}', [App\Http\Controllers\ContactController::class, 'index'])->name("contact.index");
+Route::post('/contact/create', [App\Http\Controllers\ContactController::class, 'store'])->name("contact.create");
+Route::post('/contact/delete', [App\Http\Controllers\ContactController::class, 'destroy'])->name("contact.delete");
+
+
+
+
+
+
 
 
 

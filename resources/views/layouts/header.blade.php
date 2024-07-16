@@ -64,6 +64,12 @@
       <li class="nav-item">
         <a class="nav-link " href="/transaction">Transactions</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/subscribers">Subscribers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/contacts">Contact us</a>
+      </li>
     </ul>
 
    

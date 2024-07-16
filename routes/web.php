@@ -29,3 +29,12 @@ Route::get('/admin', function () {
 Route::get('/transaction', function () {
     return view('transaction');
 });
+
+Route::get('/subscribers', function () {
+    return view('subscribers');
+});
+
+Route::get('/contacts', function () {
+    return view('contacts');
+});
+

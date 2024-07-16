@@ -253,7 +253,7 @@ username:ugwumba
 <button class="accordion">Get patiens of Doctors </button>
 <div class="panel">
     <div>
-    http://127.0.0.1:8000/api/doctors
+    http://127.0.0.1:8000/api/patients/doctor
         <h2>Post Request</h2>
         <p>
             {

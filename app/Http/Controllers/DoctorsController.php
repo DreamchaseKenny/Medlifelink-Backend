@@ -96,10 +96,16 @@ class DoctorsController extends Controller
                 $booked_with = User::find($appointment->booked_with);
                 $booked_by = User::find($appointment->booked_by);
                 if($booked_by->role = "doctor"){
+                   if(!in_array($booked_by,$doctors)){
                     array_push($doctors,$booked_by);
+                   }
 
                 }else if($booked_with->role = "doctor"){
-                    array_push($doctors,$booked_with);
+                   // array_push($doctors,$booked_with);
+
+                    if(!in_array($booked_with,$doctors)){
+                        array_push($doctors,$booked_with);
+                       }
 
                 }
                
