@@ -7,7 +7,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Appointment;
+use App\Models\Transaction;
 use Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\MailController;
 
 
 
@@ -227,6 +230,89 @@ class DoctorsController extends Controller
     
         }
     }
+
+
+
+    public function activateDoctor(Request $request){
+
+        //
+        $validator = Validator::make($request->all(),[
+     
+           'amount' => ['required', 'integer', 'min:1000'],
+           "user_id"=>['required', 'integer', 'min:1'],
+           "reference"=>['required', 'string', 'min:1'],
+           "gateway"=>['required', 'string', 'min:1'],
+          
+   ]);
+   
+       if($validator->fails()){
+         
+           return response()->json(["message"=>"wallet funds failed",
+           "status"=>false,"errors"=>$validator->messages()->all()]);
+       }
+
+       $user = User::find($request->user_id);
+       if($user == null){
+
+        return response()->json(["message"=>"User not found",
+        "status"=>false]);
+
+       }
+       //check if transaction ref is valid
+       ///pastack checks
+
+       ///////
+
+       //chech if ransaction is already credited in the passed
+       $isOldRef = Transaction::where("reference",$request->reference)->get();
+       if(count($isOldRef) > 0){
+        return response()->json(["message"=>"This transaction has been credited before",
+        "status"=>false,
+        "data" => $isOldRef->toArray()
+    ]);
+        }
+
+
+    ///successful checks
+    $old_balance = $user->balance;
+    $new_balance = $old_balance + $request->amount;
+
+    $user->status = "active";
+    $user -> save();
+    ///save transaction
+
+    $transaction = Transaction::create([
+        'amount' => $request->amount,
+        "user_id"=>$request->user_id,
+        "reference"=>$request->reference,
+        "gateway"=>$request->gateway,
+        "description"=>"registration_fee",
+        "credited_to"=>$request->user_id,
+        "type"=>"credit",
+        "status"=>"pending",
+        "title"=>"registration_fee",
+        "old_balance" => $old_balance,
+        "new_balance" => $new_balance
+
+    ]);
+
+    $message = "Account activation of N$request->amount  successful";
+
+    (new MailController)->notification($user,"wallet funding",$message);
+
+
+    return response()->json(["message"=>"Transaction successful",
+        "status"=>true,
+        "data" =>$transaction
+    ]);
+
+       
+
+
+
+   
+   
+   }
 
 
 

@@ -54,9 +54,11 @@ class TransactionsController extends Controller
 
 
     ///successful checks
+    $old_balance = $user->balance;
+    $new_balance = $old_balance + $request->amount;
 
     $user->balance = $user->balance + $request->amount;
-    $user -> update();
+    $user -> save();
     ///save transaction
 
     $transaction = Transaction::create([
@@ -64,11 +66,13 @@ class TransactionsController extends Controller
         "user_id"=>$request->user_id,
         "reference"=>$request->reference,
         "gateway"=>$request->gateway,
-        "description"=>$request->description,
+        "description"=>"wallet_funding",
         "credited_to"=>$request->user_id,
         "type"=>"credit",
         "status"=>"pending",
-        "title"=>"wallet_funding",
+        "title"=>$request->description,
+        "old_balance" => $old_balance,
+        "new_balance" => $new_balance
 
     ]);
 
@@ -117,9 +121,15 @@ class TransactionsController extends Controller
         }
 
         $transactions = Transaction::where('user_id',$user_id)->get();
+        $transactions1 =[];
+
+        foreach($transactions as $transaction){
+            $transaction['username'] = $user->username;
+            array_push($transactions1,$transaction);
+        }
 
         return response()->json(["message"=>"success",
-        "status"=>true, "data"=>$transactions]);
+        "status"=>true, "data"=>$transactions1]);
 
         
 
@@ -128,18 +138,215 @@ class TransactionsController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function withdrawal(Request $request)
     {
         //
+        $validator = Validator::make($request->all(),[
+
+        
+       
+            'amount' => ['required',"numeric"],
+            "user_id"=>['required'],
+            "acc_number"=>['required'],
+            "acc_name"=>['required'],
+            "bank_name"=>['required'],
+          ]);
+    
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"withdrawal failed",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        } 
+    
+            $user = User::find($request->user_id);
+           
+    
+    
+          if($user == null){
+    
+            return response()->json([
+                'message'=> ' user not found','status'=>false,]);
+    
+          }else if($user->role_id <2){
+
+            return response()->json([
+                'message'=> ' Only Doctors can request withdrawal','status'=>false,]);
+            
+
+          }
+
+
+          /////////////VALIDATION COMPLETE////
+          if($user->balance < $request->amount){
+            return response()->json([
+                'message'=> 'Insufficient fund','status'=>false,
+               ]);
+
+          }
+          ///debit account
+          $old_balance = $user->balance;
+
+          $user->balance = ($user->balance - $request->amount);
+          $user->save();
+
+          ///save transaction///
+
+          $transaction = Transaction::create([
+            'amount' => $request->amount,
+            "user_id"=>$request->user_id,
+            "reference"=>"none",
+            "gateway"=>"bank transfer",
+            "description"=>"withdrawal",
+            "credited_to"=>$request->user_id,
+            "type"=>"debit",
+            "status"=>"pending",
+            "title"=>"withdrawal",
+            "old_balance"=>$old_balance,
+            "new_balance" => ($old_balance - $request->amount)
+    
+        ]);
+
+        return response()->json(["message"=>"success",
+        "status"=>true, "data"=>$transaction]);
+
+
+
     }
 
     /**
-     * Store a newly created resource in storage.
+     * update a transaction.
      */
-    public function store(Request $request)
+    public function approveTransaction(Request $request)
     {
+
+         //
+         $validator = Validator::make($request->all(),[
+     
+            'transaction_id' => ['required',],
+            "user_id"=>['required', 'integer', 'min:1'],
+            "transaction_description"=>['required'],
+           
+    ]);
+    
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"transaction not found",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        }
+ 
+        $user = User::find($request->user_id);
+        $transaction = Transaction::find($request->transaction_id);
+        if($user == null){
+ 
+         return response()->json(["message"=>"User not found",
+         "status"=>false]);
+ 
+        }
+
+        if($transaction == null){
+ 
+            return response()->json(["message"=>"transaction not found",
+            "status"=>false]);
+    
+           }
+           if($transaction->user_id != $user->id){
+ 
+            return response()->json(["message"=>"transaction not found",
+            "status"=>false]);
+    
+           }
+           if($transaction->status != "pending"){
+ 
+            return response()->json(["message"=>"transaction is not pending",
+            "status"=>false]);
+    
+           }
+           ///Satisfied
+
+           if($transaction->description == "withdrawal"){
+            $transaction->status = "approved";
+            
+
+           }else if("wallet_funding"){
+            $transaction->status = "approved";
+
+           }
+
+           $transaction->save();
+
+           return response()->json(["message"=>"success",
+           "status"=>true, "data"=>$transaction]);
+
         
     }
+
+
+    public function declineTransaction(Request $request)
+    {
+          //
+          $validator = Validator::make($request->all(),[
+     
+            'transaction_id' => ['required',],
+            "user_id"=>['required', 'integer', 'min:1'],
+            "transaction_description"=>['required'],
+           
+    ]);
+    
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"wallet funds failed",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        }
+ 
+        $user = User::find($request->user_id);
+        $transaction = Transaction::find($request->transaction_id);
+        if($user == null){
+ 
+         return response()->json(["message"=>"User not found",
+         "status"=>false]);
+ 
+        }
+
+        if($transaction == null){
+ 
+            return response()->json(["message"=>"transaction not found",
+            "status"=>false]);
+    
+           }
+           if($transaction->user_id != $user->id){
+ 
+            return response()->json(["message"=>"transaction not found",
+            "status"=>false]);
+    
+           }
+           if($transaction->status != "pending"){
+ 
+            return response()->json(["message"=>"transaction is not pending",
+            "status"=>false]);
+    
+           }
+
+           if($transaction->description == "withdrawal"){
+            $transaction->status = "declined";
+            $old_balance = $user->balance;
+            $transaction->new_balance =  ($old_balance + $transaction->amount);
+            $user->balance = ($user->balance + $transaction->amount);
+            
+
+           }else if("wallet_funding"){
+            $transaction->status = "declined";
+
+           }
+
+           $transaction->save();
+           $user -> save();
+
+           return response()->json(["message"=>"success",
+           "status"=>true, "data"=>$transaction]);
+
+
+    }
+
 
     /**
      * Display the specified resource.

@@ -18,7 +18,12 @@ class Transaction extends Model
         "credited_to",
         "type",
         "status",
-        "title"
+        "title",
+        "bank_name",
+        "acc_number",
+        "acc_name",
+        "old_balance",
+        "new_balance"
 
     ];
 }

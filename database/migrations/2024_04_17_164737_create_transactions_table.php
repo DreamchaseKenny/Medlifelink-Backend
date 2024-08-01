@@ -23,6 +23,16 @@ return new class extends Migration
             $table->string("reference");
             $table->string("type");
 
+            $table->string("bank_name")->nullable();
+            $table->string("acc_number")->nullable();
+            $table->string("acc_name")->nullable();
+            $table->float("old_balance");
+            $table->float("new_balance");
+
+
+
+            
+
             $table->timestamps();
         });
     }

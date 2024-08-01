@@ -2,133 +2,133 @@
 
 <h1 class="text-primary"> (General) </h1>
 
-    <button class="accordion">Register</button>
-    <div class="panel">
-        <div>
-            http://127.0.0.1:8000/api/create_user
-            <h2>Request</h2>
-            <p>
-                {
-                email:mark@gmail.com
-                user_type:patient
-                username:mark
-                password:123456
-                }
-            </p>
-        </div>
-
-        <div>
-            <h2>Response</h2>
-            <p>
-                [
-                {
-                "message": "Registeration successful",
-                "status": true,
-                "token": "4|x3riNnhu7uiBywZbtjfexxIFuIUyhaQVBhnpxBSC85399bfa",
-                "data": {
-                "id": 2,
-                "user_id": "GACOGXOO",
-                "fullname": "",
-                "email": "mark@gmail.com",
-                "username": "mark",
-                "phone": "",
-                "country_code": "",
-                "country": "",
-                "gender": "",
-                "address": "",
-                "verification_code": null,
-                "email_verified": 0,
-                "status": "active",
-                "user_type": "patient",
-                "user_type_int": "1",
-                "email_verified_at": null,
-                "created_at": "2024-04-17T15:59:23.000000Z",
-                "updated_at": "2024-04-17T15:59:23.000000Z"
-                }
-                }
-                ]
-            </p>
-        </div>
-
+<button class="accordion">Register</button>
+<div class="panel">
+    <div>
+        http://127.0.0.1:8000/api/create_user
+        <h2>Request</h2>
+        <p>
+            {
+            email:mark@gmail.com
+            user_type:patient
+            username:mark
+            password:123456
+            }
+        </p>
     </div>
 
-
-   ////////////////////////////////////////////////////////////////////////
-
-    <button class="accordion">Login</button>
-    <div class="panel">
-        <div>
-        http://127.0.0.1:8000/api/login_user
-            <h2>Request</h2>
-            <p>
-                {
-                email:mark@gmail.com
-                password:123456
-                }
-            </p>
-        </div>
-
-        <div>
-            <h2>Response</h2>
-            <p>
-                [
-                {
-                "message": "Login successful",
-                "status": true,
-                "token": "4|x3riNnhu7uiBywZbtjfexxIFuIUyhaQVBhnpxBSC85399bfa",
-                "data": {
-                "id": 2,
-                "user_id": "GACOGXOO",
-                "fullname": "",
-                "email": "mark@gmail.com",
-                "username": "mark",
-                "phone": "",
-                "country_code": "",
-                "country": "",
-                "gender": "",
-                "address": "",
-                "verification_code": null,
-                "email_verified": 0,
-                "status": "active",
-                "user_type": "patient",
-                "user_type_int": "1",
-                "email_verified_at": null,
-                "created_at": "2024-04-17T15:59:23.000000Z",
-                "updated_at": "2024-04-17T15:59:23.000000Z"
-                }
-                }
-                ]
-            </p>
-        </div>
-
-    </div>
-
-    ////////////////////////////////////////////////////////////////////////
-
-    <button class="accordion">Book Appointment</button>
-    <div class="panel">
-        <div>
-        http://127.0.0.1:8000/api/create_appointment
-            <h2>Request</h2>
-            <p>
-                {
-                    booked_by:3
-booked_with:4
-appointment_time:2014-08-12 11:14:54
-title:meeting
-description:for medicaion
-                }
-            </p>
-        </div>
-
-        <div>
-            <h2>Response</h2>
-            <p>
+    <div>
+        <h2>Response</h2>
+        <p>
             [
-    {
-        "message": "Registeration successful",
-        "status": true,
-        "data": {
+            {
+            "message": "Registeration successful",
+            "status": true,
+            "token": "4|x3riNnhu7uiBywZbtjfexxIFuIUyhaQVBhnpxBSC85399bfa",
+            "data": {
+            "id": 2,
+            "user_id": "GACOGXOO",
+            "fullname": "",
+            "email": "mark@gmail.com",
+            "username": "mark",
+            "phone": "",
+            "country_code": "",
+            "country": "",
+            "gender": "",
+            "address": "",
+            "verification_code": null,
+            "email_verified": 0,
+            "status": "active",
+            "user_type": "patient",
+            "user_type_int": "1",
+            "email_verified_at": null,
+            "created_at": "2024-04-17T15:59:23.000000Z",
+            "updated_at": "2024-04-17T15:59:23.000000Z"
+            }
+            }
+            ]
+        </p>
+    </div>
+
+</div>
+
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Login</button>
+<div class="panel">
+    <div>
+        http://127.0.0.1:8000/api/login_user
+        <h2>Request</h2>
+        <p>
+            {
+            email:mark@gmail.com
+            password:123456
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+            [
+            {
+            "message": "Login successful",
+            "status": true,
+            "token": "4|x3riNnhu7uiBywZbtjfexxIFuIUyhaQVBhnpxBSC85399bfa",
+            "data": {
+            "id": 2,
+            "user_id": "GACOGXOO",
+            "fullname": "",
+            "email": "mark@gmail.com",
+            "username": "mark",
+            "phone": "",
+            "country_code": "",
+            "country": "",
+            "gender": "",
+            "address": "",
+            "verification_code": null,
+            "email_verified": 0,
+            "status": "active",
+            "user_type": "patient",
+            "user_type_int": "1",
+            "email_verified_at": null,
+            "created_at": "2024-04-17T15:59:23.000000Z",
+            "updated_at": "2024-04-17T15:59:23.000000Z"
+            }
+            }
+            ]
+        </p>
+    </div>
+
+</div>
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Book Appointment</button>
+<div class="panel">
+    <div>
+        http://127.0.0.1:8000/api/create_appointment
+        <h2>Request</h2>
+        <p>
+            {
+            booked_by:3
+            booked_with:4
+            appointment_time:2014-08-12 11:14:54
+            title:meeting
+            description:for medicaion
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+            [
+            {
+            "message": "Registeration successful",
+            "status": true,
+            "data": {
             "booked_by": "3",
             "booked_with": "4",
             "appointment_time": "2014-08-12 11:14:54",
@@ -139,73 +139,24 @@ description:for medicaion
             "updated_at": "2024-04-18T10:05:16.000000Z",
             "created_at": "2024-04-18T10:05:16.000000Z",
             "id": 1
-        }
-    }
-]
-            </p>
-        </div>
-
-    </div>
-
-    ////////////////////////////////////////////////////////////////////////
-
-<button class="accordion">List of Appointments</button>
-<div class="panel">
-    <div>
-    http://127.0.0.1:8000/api/list_appointments
-        <h2>Request</h2>
-        <p>
-            {
-                user_id:3
             }
-        </p>
-    </div>
-
-    <div>
-        <h2>Response</h2>
-        <p>
-        [
-{
-    "message": "Registeration successful",
-    "status": true,
-    "data": [ {
-        "booked_by": "3",
-        "booked_with": "4",
-        "appointment_time": "2014-08-12 11:14:54",
-        "title": "2014-08-12 11:14:54am",
-        "description": "ssssss",
-        "status": "active",
-
-        "updated_at": "2024-04-18T10:05:16.000000Z",
-        "created_at": "2024-04-18T10:05:16.000000Z",
-        "id": 1
-    }
-    ]
-}
-]
+            }
+            ]
         </p>
     </div>
 
 </div>
 
-    ////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 
-    ////////////////////////////////////////////////////////////////////////
-
-<button class="accordion">Prescribe Medication</button>
+<button class="accordion">List of Appointments</button>
 <div class="panel">
     <div>
-    http://127.0.0.1:8000/api/create_prescription
+        http://127.0.0.1:8000/api/list_appointments
         <h2>Request</h2>
         <p>
             {
-                user_id:3
-prescribed_by:4
-medicine_name:meeting
-dosage:for medicaion
-frequency:2x a day
-start_date:2014-08-12 11:14:54
-note:sleep well
+            user_id:3
             }
         </p>
     </div>
@@ -213,11 +164,60 @@ note:sleep well
     <div>
         <h2>Response</h2>
         <p>
-        [
-    {
-        "message": "medicaion prescription successful",
-        "status": true,
-        "data": {
+            [
+            {
+            "message": "Registeration successful",
+            "status": true,
+            "data": [ {
+            "booked_by": "3",
+            "booked_with": "4",
+            "appointment_time": "2014-08-12 11:14:54",
+            "title": "2014-08-12 11:14:54am",
+            "description": "ssssss",
+            "status": "active",
+
+            "updated_at": "2024-04-18T10:05:16.000000Z",
+            "created_at": "2024-04-18T10:05:16.000000Z",
+            "id": 1
+            }
+            ]
+            }
+            ]
+        </p>
+    </div>
+
+</div>
+
+////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Prescribe Medication</button>
+<div class="panel">
+    <div>
+        http://127.0.0.1:8000/api/create_prescription
+        <h2>Request</h2>
+        <p>
+            {
+            user_id:3
+            prescribed_by:4
+            medicine_name:meeting
+            dosage:for medicaion
+            frequency:2x a day
+            start_date:2014-08-12 11:14:54
+            note:sleep well
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+            [
+            {
+            "message": "medicaion prescription successful",
+            "status": true,
+            "data": {
             "user_id": "3",
             "prescribed_by": "4",
             "medicine_name": "meeting",
@@ -228,9 +228,9 @@ note:sleep well
             "updated_at": "2024-04-18T11:14:57.000000Z",
             "created_at": "2024-04-18T11:14:57.000000Z",
             "id": 1
-        }
-    }
-]
+            }
+            }
+            ]
 
         </p>
     </div>
@@ -242,11 +242,11 @@ note:sleep well
 <button class="accordion">List of Medication</button>
 <div class="panel">
     <div>
-    http://127.0.0.1:8000/api/list_medications
+        http://127.0.0.1:8000/api/list_medications
         <h2>Request</h2>
         <p>
             {
-                user_id:3
+            user_id:3
 
             }
         </p>
@@ -255,12 +255,12 @@ note:sleep well
     <div>
         <h2>Response</h2>
         <p>
-        [
-    
-        {
-        "message": "medicaions successfully fetched",
-        "status": true,
-        "data": [ {
+            [
+
+            {
+            "message": "medicaions successfully fetched",
+            "status": true,
+            "data": [ {
             "user_id": "3",
             "prescribed_by": "4",
             "medicine_name": "meeting",
@@ -271,8 +271,8 @@ note:sleep well
             "updated_at": "2024-04-18T11:14:57.000000Z",
             "created_at": "2024-04-18T11:14:57.000000Z",
             "id": 1
-        },
-        {
+            },
+            {
             "user_id": "3",
             "prescribed_by": "4",
             "medicine_name": "meeting",
@@ -283,10 +283,10 @@ note:sleep well
             "updated_at": "2024-04-18T11:14:57.000000Z",
             "created_at": "2024-04-18T11:14:57.000000Z",
             "id": 1
-        }
-        ]
-    }
-]
+            }
+            ]
+            }
+            ]
         </p>
     </div>
 
@@ -298,11 +298,11 @@ note:sleep well
 <button class="accordion">get user by ID</button>
 <div class="panel">
     <div>
-    http://127.0.0.1:8000/api/get_user
+        http://127.0.0.1:8000/api/get_user
         <h2>Request</h2>
         <p>
             {
-                user_id:8
+            user_id:8
 
             }
         </p>
@@ -311,11 +311,11 @@ note:sleep well
     <div>
         <h2>Response</h2>
         <p>
-        [
-    {
-        "message": " successful",
-        "status": true,
-        "data": {
+            [
+            {
+            "message": " successful",
+            "status": true,
+            "data": {
             "id": 8,
             "user_id": "OMKLPY0I",
             "fullname": "postial doctor",
@@ -343,9 +343,9 @@ note:sleep well
             "photo": "",
             "created_at": "2024-05-09T16:11:54.000000Z",
             "updated_at": "2024-05-09T16:11:54.000000Z"
-        }
-    }
-]
+            }
+            }
+            ]
         </p>
     </div>
 
@@ -360,99 +360,99 @@ note:sleep well
 <button class="accordion">Update user</button>
 
 <div class="panel">
-     <div>
-         http://127.0.0.1:8000/api/update_user
-         <h2>Post Request</h2>
-         <p>
-             {
-         'phone' : 09087877766,
-         'fullname' => mark john,
-         'country_code' => +234,
-         'country' => Nigeria,
-         'gender' => male,
-         'address' => 123 enugu road,
-         'dob' => 2000-4-12,
-         "user_id"=>3,
-             
-             }
-         </p>
-     </div>
+    <div>
+        http://127.0.0.1:8000/api/update_user
+        <h2>Post Request</h2>
+        <p>
+            {
+            'phone' : 09087877766,
+            'fullname' => mark john,
+            'country_code' => +234,
+            'country' => Nigeria,
+            'gender' => male,
+            'address' => 123 enugu road,
+            'dob' => 2000-4-12,
+            "user_id"=>3,
 
-     <div>
-         <h2>Response</h2>
-         <p>
-         {
- "message": " successful",
- "status": true,
- "data": {
-     "id": 1,
-     "user_id": "LTLQN71L",
-     "fullname": "postial doctor",
-     "balance": 0,
-     "email": "email@gmail.com",
-     "username": "martins",
-     "phone": "098988834",
-     "country_code": "+234",
-     "country": "Nigeria",
-     "gender": "male",
-     "address": "123 address",
-     "specialization": "Toot",
-     "verification_code": null,
-     "email_verified": 0,
-     "status": "active",
-     "role": "patient",
-     "created_by": "",
-     "rating": "",
-     "dob": "dob",
-     "consultation_amount": "0",
-     "role_id": "1",
-     "email_verified_at": null,
-     "weight": "0",
-     "height": "0",
-     "blood_pressure": "",
-     "glucose_level": "",
-     "photo": "",
-     "created_at": "2024-06-26T08:35:56.000000Z",
-     "updated_at": "2024-06-26T08:35:56.000000Z"
- }
-}
-         </p>
-     </div>
+            }
+        </p>
+    </div>
 
- </div>
+    <div>
+        <h2>Response</h2>
+        <p>
+            {
+            "message": " successful",
+            "status": true,
+            "data": {
+            "id": 1,
+            "user_id": "LTLQN71L",
+            "fullname": "postial doctor",
+            "balance": 0,
+            "email": "email@gmail.com",
+            "username": "martins",
+            "phone": "098988834",
+            "country_code": "+234",
+            "country": "Nigeria",
+            "gender": "male",
+            "address": "123 address",
+            "specialization": "Toot",
+            "verification_code": null,
+            "email_verified": 0,
+            "status": "active",
+            "role": "patient",
+            "created_by": "",
+            "rating": "",
+            "dob": "dob",
+            "consultation_amount": "0",
+            "role_id": "1",
+            "email_verified_at": null,
+            "weight": "0",
+            "height": "0",
+            "blood_pressure": "",
+            "glucose_level": "",
+            "photo": "",
+            "created_at": "2024-06-26T08:35:56.000000Z",
+            "updated_at": "2024-06-26T08:35:56.000000Z"
+            }
+            }
+        </p>
+    </div>
+
+</div>
 
 
- 
+
 ////////////////////////////////////////////////////////////////////////
 
 <button class="accordion">Fund wallet</button>
 
 <div class="panel">
-     <div>
-         http://127.0.0.1:8000/api/fund_wallet
-         <h2>Post Request</h2>
-         <p>
-             {
-         'amount' : 500,
-         'user_id' : 1,
-         'reference' : 7869088ggiig,
-         'gateway' : paystack,
-         'description' : "wallet funding",
-         
-        
-             
-             }
-         </p>
-     </div>
+    <div>
+        http://127.0.0.1:8000/api/fund_wallet
+        <h2>Post Request</h2>
+        <p>
+            {
+            'amount' : 500,
+            'user_id' : 1,
+            'reference' : 7869088ggiig,
+            'gateway' : paystack,
+            'description' : "wallet funding",
 
-     <div>
-         <h2>Response</h2>
-         <p>
-         {
-    "message": "This transaction has been credited before",
-    "status": false,
-    "data": 
-        {
+
+
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+            {
+            "message": "This transaction has been credited before",
+            "status": false,
+            "data":
+            {
             "id": 1,
             "user_id": 1,
             "status": "pending",
@@ -465,224 +465,224 @@ note:sleep well
             "type": "credit",
             "created_at": "2024-06-26T09:47:40.000000Z",
             "updated_at": "2024-06-26T09:47:40.000000Z"
-        }
-    
-}
-         </p>
-     </div>
-     </div>
+            }
+
+            }
+        </p>
+    </div>
+</div>
 
 
 
-      
+
 ////////////////////////////////////////////////////////////////////////
 
 <button class="accordion">Update Appointment status</button>
 
 <div class="panel">
-     <div>
-         http://127.0.0.1:8000/api/appointment/status
-         <h2>Post Request</h2>
-         <p>
-             {
-         
-         'appointment_id' : 1,
-         'action' : pending || approve || cancel,
-        
-         
-        
-             
-             }
-         </p>
-     </div>
+    <div>
+        http://127.0.0.1:8000/api/appointment/status
+        <h2>Post Request</h2>
+        <p>
+            {
 
-     <div>
-         <h2>Response</h2>
-         <p>
-         {
-    "message": "successfull",
-    "status": true,
-    
-    
-}
-         </p>
-     </div>
-     </div>
+            'appointment_id' : 1,
+            'action' : pending || approve || cancel,
 
 
-     ////////////////////////////////////////////////////////////////////////
+
+
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+            {
+            "message": "successfull",
+            "status": true,
+
+
+            }
+        </p>
+    </div>
+</div>
+
+
+////////////////////////////////////////////////////////////////////////
 
 <button class="accordion">Delete Appointment </button>
 
 <div class="panel">
-     <div>
-         http://127.0.0.1:8000/api/appointment/delete
-         <h2>Post Request</h2>
-         <p>
-             {
-         
-         'appointment_id' : 1,
-         
-        
-         
-        
-             
-             }
-         </p>
-     </div>
+    <div>
+        http://127.0.0.1:8000/api/appointment/delete
+        <h2>Post Request</h2>
+        <p>
+            {
 
-     <div>
-         <h2>Response</h2>
-         <p>
-         {
-    "message": "successfull",
-    "status": true,
-    
-    
-}
-         </p>
-     </div>
+            'appointment_id' : 1,
 
 
-     
-
- </div>
 
 
- ////////////////////////////////////////////////////////////////////////
+
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+            {
+            "message": "successfull",
+            "status": true,
+
+
+            }
+        </p>
+    </div>
+
+
+
+
+</div>
+
+
+////////////////////////////////////////////////////////////////////////
 
 <button class="accordion">Update user professional Details </button>
 
 <div class="panel">
-     <div>
-     http://127.0.0.1:8000/api/user/update_prof_info
-         <h2>Post Request</h2>
-         <p>
-             {
-         
-                'photo' : https://photolink/photo.png,
+    <div>
+        http://127.0.0.1:8000/api/user/update_prof_info
+        <h2>Post Request</h2>
+        <p>
+            {
+
+            'photo' : https://photolink/photo.png,
             'specialization' : dentist,
             'consultation_amount' : 10000,
             'address': 123 new address lagos
-         
-        
-         
-        
-             
-             }
-         </p>
-     </div>
-
-     <div>
-         <h2>Response</h2>
-         <p>
-         {
-    "message": " successful",
-    "status": true,
-    "data": {
-        "id": 3,
-        "user_id": "23SG5IQW",
-        "fullname": "newname",
-        "balance": 0,
-        "email": "zhinzeu@gmail.com",
-        "username": "zhinzeu",
-        "phone": "098988834",
-        "country_code": "+234",
-        "country": "Nigeria",
-        "gender": "male",
-        "address": "123 address hill view road",
-        "specialization": "dentist",
-        "verification_code": null,
-        "email_verified": 0,
-        "status": "active",
-        "role": "patient",
-        "created_by": "",
-        "rating": "",
-        "dob": "12-45-899",
-        "consultation_amount": "9000",
-        "role_id": "1",
-        "email_verified_at": null,
-        "weight": "0",
-        "height": "0",
-        "blood_pressure": "",
-        "glucose_level": "",
-        "photo": "link to photos",
-        "created_at": "2024-07-04T00:57:41.000000Z",
-        "updated_at": "2024-07-04T08:27:33.000000Z"
-    }
-}
-         </p>
-     </div>
 
 
-     
 
- </div>
-    
 
- ////////////////////////////////////////////////////////////////////////
+
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+            {
+            "message": " successful",
+            "status": true,
+            "data": {
+            "id": 3,
+            "user_id": "23SG5IQW",
+            "fullname": "newname",
+            "balance": 0,
+            "email": "zhinzeu@gmail.com",
+            "username": "zhinzeu",
+            "phone": "098988834",
+            "country_code": "+234",
+            "country": "Nigeria",
+            "gender": "male",
+            "address": "123 address hill view road",
+            "specialization": "dentist",
+            "verification_code": null,
+            "email_verified": 0,
+            "status": "active",
+            "role": "patient",
+            "created_by": "",
+            "rating": "",
+            "dob": "12-45-899",
+            "consultation_amount": "9000",
+            "role_id": "1",
+            "email_verified_at": null,
+            "weight": "0",
+            "height": "0",
+            "blood_pressure": "",
+            "glucose_level": "",
+            "photo": "link to photos",
+            "created_at": "2024-07-04T00:57:41.000000Z",
+            "updated_at": "2024-07-04T08:27:33.000000Z"
+            }
+            }
+        </p>
+    </div>
+
+
+
+
+</div>
+
+
+////////////////////////////////////////////////////////////////////////
 
 <button class="accordion">Update password </button>
 
 <div class="panel">
-     <div>
-     http://127.0.0.1:8000/api/user/update_password
-         <h2>Post Request</h2>
-         <p>
-             {
-         
-         'user_id' : 1,
-         "new_password":"2345678",
-         "password":1234567
-         
-        
-         
-        
-             
-             }
-         </p>
-     </div>
+    <div>
+        http://127.0.0.1:8000/api/user/update_password
+        <h2>Post Request</h2>
+        <p>
+            {
 
-     <div>
-         <h2>Response</h2>
-         <p>
-         {
-    "message": " successful",
-    "status": true,
-    "data": {
-        "id": 3,
-        "user_id": "23SG5IQW",
-        "fullname": "newname",
-        "balance": 0,
-        "email": "zhinzeu@gmail.com",
-        "username": "zhinzeu",
-        "phone": "098988834",
-        "country_code": "+234",
-        "country": "Nigeria",
-        "gender": "male",
-        "address": "123 address hill view road",
-        "specialization": "dentist",
-        "verification_code": null,
-        "email_verified": 0,
-        "status": "active",
-        "role": "patient",
-        "created_by": "",
-        "rating": "",
-        "dob": "12-45-899",
-        "consultation_amount": "9000",
-        "role_id": "1",
-        "email_verified_at": null,
-        "weight": "0",
-        "height": "0",
-        "blood_pressure": "",
-        "glucose_level": "",
-        "photo": "link to photos",
-        "created_at": "2024-07-04T00:57:41.000000Z",
-        "updated_at": "2024-07-04T08:27:33.000000Z"
-    }
-}
-         </p>
-     </div>
+            'user_id' : 1,
+            "new_password":"2345678",
+            "password":1234567
+
+
+
+
+
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+            {
+            "message": " successful",
+            "status": true,
+            "data": {
+            "id": 3,
+            "user_id": "23SG5IQW",
+            "fullname": "newname",
+            "balance": 0,
+            "email": "zhinzeu@gmail.com",
+            "username": "zhinzeu",
+            "phone": "098988834",
+            "country_code": "+234",
+            "country": "Nigeria",
+            "gender": "male",
+            "address": "123 address hill view road",
+            "specialization": "dentist",
+            "verification_code": null,
+            "email_verified": 0,
+            "status": "active",
+            "role": "patient",
+            "created_by": "",
+            "rating": "",
+            "dob": "12-45-899",
+            "consultation_amount": "9000",
+            "role_id": "1",
+            "email_verified_at": null,
+            "weight": "0",
+            "height": "0",
+            "blood_pressure": "",
+            "glucose_level": "",
+            "photo": "link to photos",
+            "created_at": "2024-07-04T00:57:41.000000Z",
+            "updated_at": "2024-07-04T08:27:33.000000Z"
+            }
+            }
+        </p>
+    </div>
 </div>
 
 
@@ -691,32 +691,99 @@ note:sleep well
 <button class="accordion">Forgot password </button>
 
 <div class="panel">
-     <div>
-     http://127.0.0.1:8000/api/user/forgotpassword
-         <h2>Post Request</h2>
-         <p>
-             {
-         
-         'email' : user@gmail.com,
-        
-         
-        
-         
-        
-             
-             }
-         </p>
-     </div>
+    <div>
+        http://127.0.0.1:8000/api/user/forgotpassword
+        <h2>Post Request</h2>
+        <p>
+            {
 
-     <div>
-         <h2>Response</h2>
-         <p>
-         {
-    "message": " otp sent",
-    "status": true
-}
-         </p>
-     </div>
+            'email' : user@gmail.com,
+
+
+
+
+
+
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+            {
+            "message": " otp sent",
+            "status": true
+            }
+        </p>
+    </div>
+</div>
+
+
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Confirm OTP </button>
+
+<div class="panel">
+    <div>
+        http://127.0.0.1:8000/api/otp/confirm
+        <h2>Post Request</h2>
+        <p>
+            {
+
+            'email' : user@gmail.com,
+            'otp' : 90999,
+
+
+
+
+
+
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+            {
+                "message": " successful",
+                "status": true,
+                "data": {
+                "id": 3,
+                "user_id": "23SG5IQW",
+                "fullname": "newname",
+                "balance": 0,
+                "email": "zhinzeu@gmail.com",
+                "username": "zhinzeu",
+                "phone": "098988834",
+                "country_code": "+234",
+                "country": "Nigeria",
+                "gender": "male",
+                "address": "123 address hill view road",
+                "specialization": "dentist",
+                "verification_code": null,
+                "email_verified": 0,
+                "status": "active",
+                "role": "patient",
+                "created_by": "",
+                "rating": "",
+                "dob": "12-45-899",
+                "consultation_amount": "9000",
+                "role_id": "1",
+                "email_verified_at": null,
+                "weight": "0",
+                "height": "0",
+                "blood_pressure": "",
+                "glucose_level": "",
+                "photo": "link to photos",
+                "created_at": "2024-07-04T00:57:41.000000Z",
+                "updated_at": "2024-07-04T08:27:33.000000Z"
+                }
+                }
+        </p>
+    </div>
 </div>
 
 
@@ -728,72 +795,72 @@ note:sleep well
 <button class="accordion">Change password </button>
 
 <div class="panel">
-     <div>
-     http://127.0.0.1:8000/api/user/changePassword
-         <h2>Post Request</h2>
-         <p>
-             {
-         
-         'email' : user@gmail.com,
-         "new_password":"2345678",
-         "otp":089898
-         
-        
-         
-        
-             
-             }
-         </p>
-     </div>
+    <div>
+        http://127.0.0.1:8000/api/user/changePassword
+        <h2>Post Request</h2>
+        <p>
+            {
 
-     <div>
-         <h2>Response</h2>
-         <p>
-         {
-    "message": " successful",
-    "status": true,
-    "data": {
-        "id": 3,
-        "user_id": "23SG5IQW",
-        "fullname": "newname",
-        "balance": 0,
-        "email": "zhinzeu@gmail.com",
-        "username": "zhinzeu",
-        "phone": "098988834",
-        "country_code": "+234",
-        "country": "Nigeria",
-        "gender": "male",
-        "address": "123 address hill view road",
-        "specialization": "dentist",
-        "verification_code": null,
-        "email_verified": 0,
-        "status": "active",
-        "role": "patient",
-        "created_by": "",
-        "rating": "",
-        "dob": "12-45-899",
-        "consultation_amount": "9000",
-        "role_id": "1",
-        "email_verified_at": null,
-        "weight": "0",
-        "height": "0",
-        "blood_pressure": "",
-        "glucose_level": "",
-        "photo": "link to photos",
-        "created_at": "2024-07-04T00:57:41.000000Z",
-        "updated_at": "2024-07-04T08:27:33.000000Z"
-    }
-}
-         </p>
-     </div>
+            'email' : user@gmail.com,
+            "new_password":"2345678",
+            <!-- "otp":089898 -->
+
+
+
+
+
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+            {
+            "message": " successful",
+            "status": true,
+            "data": {
+            "id": 3,
+            "user_id": "23SG5IQW",
+            "fullname": "newname",
+            "balance": 0,
+            "email": "zhinzeu@gmail.com",
+            "username": "zhinzeu",
+            "phone": "098988834",
+            "country_code": "+234",
+            "country": "Nigeria",
+            "gender": "male",
+            "address": "123 address hill view road",
+            "specialization": "dentist",
+            "verification_code": null,
+            "email_verified": 0,
+            "status": "active",
+            "role": "patient",
+            "created_by": "",
+            "rating": "",
+            "dob": "12-45-899",
+            "consultation_amount": "9000",
+            "role_id": "1",
+            "email_verified_at": null,
+            "weight": "0",
+            "height": "0",
+            "blood_pressure": "",
+            "glucose_level": "",
+            "photo": "link to photos",
+            "created_at": "2024-07-04T00:57:41.000000Z",
+            "updated_at": "2024-07-04T08:27:33.000000Z"
+            }
+            }
+        </p>
+    </div>
 </div>
 
 
 ////////////////////////////////////////////////////////////////////////
-    
-    
 
-    
+
+
+
 
 
 

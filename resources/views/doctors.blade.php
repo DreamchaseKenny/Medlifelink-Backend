@@ -312,6 +312,105 @@ username:ugwumba
 </div>
 
 
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion"> Doctors Withdrawal</button>
+<div class="panel">
+    <div>
+    http://127.0.0.1:8000/api/doctors/withdraw
+        <h2>Post Request</h2>
+        <p>
+            {
+                user_id:2
+acc_number:7878877878
+acc_name:Mark doctore
+bank_name:First bank
+
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+        
+        {
+    "message": "success",
+    "status": true,
+    "data": {
+        "amount": "7000",
+        "user_id": "2",
+        "reference": "none",
+        "gateway": "bank transfer",
+        "description": "withdrawal",
+        "credited_to": "2",
+        "type": "debit",
+        "status": "pending",
+        "title": "withdrawal",
+        "old_balance": 14600,
+        "new_balance": 7600,
+        "updated_at": "2024-07-31T22:49:05.000000Z",
+        "created_at": "2024-07-31T22:49:05.000000Z",
+        "id": 8
+    }
+}
+
+        </p>
+    </div>
+
+</div>
+
+
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Activate Doctor</button>
+<div class="panel">
+    <div>
+    http://127.0.0.1:8000/api/doctors/activate
+        <h2>Post Request</h2>
+        <p>
+            {
+                user_id:2
+                amount:7000
+reference:HJUYUHHHJJ787
+gateway:paystack
+
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+        
+        {
+    "message": "success",
+    "status": true,
+    "data": {
+        "amount": "7000",
+        "user_id": "2",
+        "reference": "none",
+        "gateway": "bank transfer",
+        "description": "withdrawal",
+        "credited_to": "2",
+        "type": "debit",
+        "status": "pending",
+        "title": "withdrawal",
+        "old_balance": 14600,
+        "new_balance": 7600,
+        "updated_at": "2024-07-31T22:49:05.000000Z",
+        "created_at": "2024-07-31T22:49:05.000000Z",
+        "id": 8
+    }
+}
+
+        </p>
+    </div>
+
+</div>
+
+
 
 @include('layouts.footer')
 

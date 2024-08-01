@@ -27,6 +27,9 @@ Route::post('/user/forgotpassword', [App\Http\Controllers\UserController::class,
 
 Route::post('/user/changePassword', [App\Http\Controllers\UserController::class, 'changePassword'])->name("user.changePassword");
 
+Route::post('/otp/confirm', [App\Http\Controllers\UserController::class, 'confirmOTP'])->name("user.changePassword");
+
+
 
 
 
@@ -55,6 +58,12 @@ Route::post('/doctor/create_patient', [App\Http\Controllers\DoctorsController::c
 Route::post('/doctor/patients', [App\Http\Controllers\DoctorsController::class, 'getPatients'])->name("doctor.patients");
 ///get patients doctors
 Route::post('/patients/doctor', [App\Http\Controllers\DoctorsController::class, 'getPatientsDoctor'])->name("patients.doctors");
+//Withdraw
+Route::post('/doctors/withdraw', [App\Http\Controllers\TransactionsController::class, 'withdrawal'])->name("user.withdrawal");
+///activation fee
+Route::post('/doctors/activate', [App\Http\Controllers\DoctorsController::class, 'activateDoctor'])->name("doctors.activate");
+
+
 
 
 
@@ -69,13 +78,22 @@ Route::post('/hospital/create_user', [App\Http\Controllers\HospitalController::c
 ///get doctors
 Route::post('/doctors', [App\Http\Controllers\DoctorsController::class, 'getDoctors'])->name("doctors.getDoctors");
 
+
+
+
 ///wallet
 //fundWallet
 Route::post('/fund_wallet', [App\Http\Controllers\TransactionsController::class, 'fundWallet'])->name("wallet.fund");
-
-
 ///transactions
 Route::get('/user/transactions/{user_id}', [App\Http\Controllers\TransactionsController::class, 'userTransactions'])->name("user.transactions");
+//approve transactions
+Route::post('/transactions/approve', [App\Http\Controllers\TransactionsController::class, 'approveTransaction'])->name("transaction.approve");
+//decline transactions
+Route::post('/transactions/decline', [App\Http\Controllers\TransactionsController::class, 'declineTransaction'])->name("transaction.decline");
+
+
+
+
 
 
 

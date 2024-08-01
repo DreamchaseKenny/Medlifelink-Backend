@@ -97,6 +97,9 @@ class UserController extends Controller
             }
 
             $request['role_id'] = array_search($request['role'],$roles) + 1;
+            if($request['role'] == "doctor"){
+                $request['status'] = "pending";
+            } 
 
 
             $request['user_id'] = ($this->uniqueUserId());
@@ -522,7 +525,7 @@ public function changePassword(Request $request)
 
         
        
-        'otp' => ['required', 'string', 'min:6'],
+        // 'otp' => ['required', 'string', 'min:6'],
         'new_password' => ['required', 'string', 'min:6'],
         "email"=>['required', 'email'],
         
@@ -549,15 +552,17 @@ public function changePassword(Request $request)
            
         ]);
 
-      }else if ($user->verification_code != $request->otp){
-
-        return response()->json([
-            'message'=> 'Incorrect password','status'=>false,
-           
-           
-        ]);
-
       }
+      
+    //   else if ($user->verification_code != $request->otp){
+
+    //     return response()->json([
+    //         'message'=> 'Incorrect password','status'=>false,
+           
+           
+    //     ]);
+
+    //   }
 
       $user->update([
 
@@ -578,6 +583,52 @@ public function changePassword(Request $request)
       
     }
 
+}
+
+function confirmOTP(Request $request){
+
+    $validator = Validator::make($request->all(),[
+
+        
+       
+        'otp' => ['required', 'string', 'min:6'],
+        "email"=>['required', 'email'],
+      ]);
+
+    if($validator->fails()){
+      
+        return response()->json(["message"=>"user update failed",
+        "status"=>false,"errors"=>$validator->messages()->all()]);
+    } 
+
+        $user = User::where("email",$request->email)->first();
+       
+
+
+      if($user == null){
+
+        return response()->json([
+            'message'=> ' user not found','status'=>false,
+           
+           
+        ]);
+
+      }
+     if ($user->verification_code != $request->otp){
+
+            return response()->json([
+                'message'=> 'Incorrect password','status'=>false,
+               
+               
+            ]);
+    
+          }
+
+          return response()->json([
+            'message'=> ' successful','status'=>true,
+           
+            "data"=>$user->toArray()
+        ]);
 }
 
 
