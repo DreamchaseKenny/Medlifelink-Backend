@@ -11,7 +11,7 @@ use App\Http\Controllers\MailController;
 class AppointmentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Appointment.
      */
     public function index(Request $request)
     {
@@ -28,16 +28,16 @@ class AppointmentController extends Controller
             return response()->json(["message"=>"appointments fetch failed ",
             "status"=>false,"errors"=>$validator->messages()->all()]);
         } else {
-            $appointments = Appointment::where("booked_by",$request->user_id)->orWhere("booked_with",$request->user_id)->orderBy("id","desc")->get();
+            $appointments = Appointment::where("doctor_id",$request->user_id)->orWhere("patient_id",$request->user_id)->orderBy("id","desc")->get();
 
             $appointmentList = [];
 
             foreach($appointments as $appointment){
-                $booked_with = User::find($appointment->booked_with);
-                $booked_by = User::find($appointment->booked_by);
+                $doctor = User::find($appointment->doctor_id);
+                $patient = User::find($appointment->patient_id);
 
-                $appointment["booked_with"] =  $booked_with;
-                $appointment["booked_by"] =  $booked_by;
+                $appointment["doctor"] =  $doctor;
+                $appointment["patient"] =  $patient;
                 array_push($appointmentList,$appointment);
 
                 
@@ -58,8 +58,30 @@ class AppointmentController extends Controller
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
-     * Show the form for creating a new resource.
+     * book new Appointment .
      */
     public function bookAppointment(Request $request)
     {
@@ -68,11 +90,14 @@ class AppointmentController extends Controller
         $validator = Validator::make($request->all(),[
            
             
-            'booked_by' => ['required', 'max:255'],
-            'booked_with' => ['required','max:255'],
+            'doctor_id' => ['required', 'max:255'],
+            'patient_id' => ['required','max:255'],
             'appointment_time' => ['required','max:255'],
+            'appointment_date' => ['required','max:255'],
+            'type' => [],
+            'link' => ['required'],
             'title' => ['required','max:255'],
-            'description' => ['required','max:255'],
+            'description' => ['required'],
         ]);
 
         if($validator->fails()){
@@ -82,10 +107,10 @@ class AppointmentController extends Controller
         } 
         
         else {
-            $booked_by = User::find($request->booked_by);
-            $booked_with = User::find($request->booked_with);
+            $doctor= User::find($request->doctor_id);
+            $patient = User::find($request->patient_id);
 
-            if($booked_by == null ||  $booked_with == null){
+            if($doctor == null ||  $patient == null){
 
                 return response()->json(["message"=>"appointment not found",
                 "status"=>false,"errors"=>"user not found"]);
@@ -101,12 +126,14 @@ class AppointmentController extends Controller
             $appointment = Appointment::create($request->all());
             $mailController = (new MailController);
             ///send email to booked with (booker)
-            $message = "A $booked_by->fullname has requested for an appointment without";
-            $mailController->appointmentMail($appointment,$booked_with,$message);
+            $message = "A $patient->fullname has requested for an appointment without";
+            $mailController->appointmentMail($appointment,$doctor,$message);
 
             ///send email to booked with (booker)
-            $message = "You have sent an appointment request to $booked_with->fullname ";
-            $mailController->appointmentMail($appointment,$booked_by,$message);
+            $message = "You have sent an appointment request to $doctor->fullname ";
+            $mailController->appointmentMail($appointment,$patient,$message);
+            $appointment['doctor'] = $doctor;
+            $appointment['patient'] = $patient;
 
             return response()->json(
                 ['message'=> 'Registeration successful','status'=>true,
@@ -200,6 +227,7 @@ class AppointmentController extends Controller
        
             return response()->json(["message"=>"Successfully deleted",
                 "status"=>true]);
+
         
 
     }

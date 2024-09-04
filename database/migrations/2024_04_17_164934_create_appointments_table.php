@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->integer('booked_by');
-            $table->integer('booked_with');
-            $table->timestamp('appointment_time');
-            $table->string('title');
-            $table->string('status');
-            $table->string('description');
+            $table->integer('doctor_id');
+            $table->integer('patient_id');
+            $table->time('appointment_time');
+            $table->date('appointment_date');
+            $table->string('title')->default("");
+            $table->string('link');
+            $table->string('type')->default("");
+            $table->string('status')->default("pending");
+            $table->text('description')->default("");
             $table->timestamps();
         });
     }

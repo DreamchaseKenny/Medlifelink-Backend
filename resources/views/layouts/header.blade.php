@@ -56,7 +56,7 @@
       </li>
       
       <li class="nav-item">
-        <a class="nav-link " href="/hospital">Hospital</a>
+        <a class="nav-link " href="/appointments">Appointments</a>
       </li>
       <li class="nav-item">
         <a class="nav-link " href="/admin">Admin</a>

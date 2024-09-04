@@ -38,3 +38,6 @@ Route::get('/contacts', function () {
     return view('contacts');
 });
 
+Route::get('/appointments', function () {
+    return view('appointments');
+});
