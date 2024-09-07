@@ -7,7 +7,7 @@
 <button class="accordion">List of Medication</button>
 <div class="panel">
     <div>
-        http://127.0.0.1:8000/api/list_medications
+        http://127.0.0.1:8000/api/medications/list
         <h2>Request</h2>
           <pre>
             {

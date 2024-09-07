@@ -45,13 +45,15 @@ Route::post('/appointment/delete', [App\Http\Controllers\AppointmentController::
 
 Route::post('/appointment/cancel', [App\Http\Controllers\AppointmentController::class, 'cancel'])->name("appointment.cancel");
 Route::post('/appointment/update', [App\Http\Controllers\AppointmentController::class, 'update'])->name("appointment.update");
+Route::post('/appointment/reschedule', [App\Http\Controllers\AppointmentController::class, 'reschedule'])->name("appointment.reschedule");
+
 
 
 
 
 ///Medication Route
-Route::post('/list_medications', [App\Http\Controllers\MedicationController::class, 'index'])->name("medicaion.index");
-Route::post('/create_medication', [App\Http\Controllers\MedicationController::class, 'create'])->name("create_prescription");
+Route::post('/medications/list', [App\Http\Controllers\MedicationController::class, 'index'])->name("medicaion.index");
+Route::post('/medication/create', [App\Http\Controllers\MedicationController::class, 'create'])->name("create_prescription");
 
 //////////////////DOCTOR////////////
 
@@ -94,6 +96,17 @@ Route::get('/user/transactions/{user_id}', [App\Http\Controllers\TransactionsCon
 Route::post('/transactions/approve', [App\Http\Controllers\TransactionsController::class, 'approveTransaction'])->name("transaction.approve");
 //decline transactions
 Route::post('/transactions/decline', [App\Http\Controllers\TransactionsController::class, 'declineTransaction'])->name("transaction.decline");
+
+
+///Rating Endpoinst
+//Doctors and patient Rating
+Route::post('/ratings', [App\Http\Controllers\RatingController::class, 'getRatings'])->name("ratings.get");
+Route::post('/rate/doctor', [App\Http\Controllers\RatingController::class, 'rateDoctor'])->name("doctor.rate");
+Route::post('/rate/patient', [App\Http\Controllers\RatingController::class, 'ratePatient'])->name("patient.rate");
+
+
+
+
 
 
 

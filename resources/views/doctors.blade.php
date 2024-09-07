@@ -9,7 +9,7 @@
 <button class="accordion">Prescribe Medication</button>
 <div class="panel">
     <div>
-        http://127.0.0.1:8000/api/create_prescription
+        http://127.0.0.1:8000/api/medication/create
         <h2>Request</h2>
           <pre>
             {

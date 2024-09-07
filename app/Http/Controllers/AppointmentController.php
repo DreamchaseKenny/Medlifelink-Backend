@@ -315,6 +315,126 @@ class AppointmentController extends Controller
 
 
 
+
+
+
+
+
+     /**
+     * update  Appointment .
+     */
+    public function reschedule(Request $request)
+    {
+        //
+
+        $validator = Validator::make($request->all(),[
+           
+            
+           
+            'appointment_time' => ['required','max:255'],
+            'appointment_date' => ['required','max:255'],
+            'type' => ['required'],
+            'link' => ['required'],
+            'title' => ['required','max:255'],
+            'description' => ['required'],
+            'appointment_id' => ['required','max:255'],
+        ]);
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"Booking falied  ",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        } 
+
+
+        
+     //
+        $appointment = Appointment::find($request->appointment_id);
+
+
+
+        if($appointment == null){
+            return response()->json(["message"=>"appointment not found",
+                "status"=>false,"errors"=>"appointment not found"]);
+        }
+
+        /////when appointment is cancelled or  cmpleted
+
+        if($appointment->status == "completed" ){
+            return response()->json(["message"=>"Appointment is already completed",
+                "status"=>false,"errors"=>"invalid action"]);
+        }if($appointment->status == "cancelled" ){
+            return response()->json(["message"=>"Appointment is already cancelled",
+                "status"=>false,"errors"=>"invalid action"]);
+        }
+
+        ////////////////////////////////////
+
+
+        /////// get the doctor and patient invlved
+        $doctor= User::find($appointment->doctor_id);
+        $patient = User::find($appointment->patient_id);
+
+
+           
+
+
+
+
+
+            
+                
+        $appointment->appointment_time = $request->appointment_time;
+        $appointment->appointment_date =  $request->appointment_date;
+        $appointment->type =  $request->type;
+        $appointment->link =  $request->link;
+        $appointment->title =  $request->title;
+        $appointment->description =  $request->description;
+
+        $appointment->save();
+
+
+            
+            
+            $mailController = (new MailController);
+            ///send email to booked with (booker)
+            $message = "Your Appointment has been updated ";
+            $mailController->appointmentMail($appointment,$doctor,$message);
+
+            ///send email to booked with (booker)
+            $message = "Your Appointment has been updated with $doctor->fullname ";
+            $mailController->appointmentMail($appointment,$patient,$message);
+            $appointment['doctor'] = $doctor;
+            $appointment['patient'] = $patient;
+
+            return response()->json(
+                ['message'=> 'Registeration successful','status'=>true,
+              
+                "data"=>$appointment]
+            );
+
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
 
    

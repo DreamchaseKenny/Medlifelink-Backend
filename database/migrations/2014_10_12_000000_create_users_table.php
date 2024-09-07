@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('status')->default('active');
             $table->string('role')->default('patient');
             $table->string('created_by')->default('');
-            $table->string('rating')->default('');
+            $table->float('rating')->default(0);
 
             $table->string('dob')->default('');
             $table->string('consultation_amount')->default(0);
