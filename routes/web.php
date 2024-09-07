@@ -41,3 +41,7 @@ Route::get('/contacts', function () {
 Route::get('/appointments', function () {
     return view('appointments');
 });
+
+Route::get('/patients', function () {
+    return view('patients');
+});

@@ -52,6 +52,9 @@
         <a class="nav-link" href="/">General </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/patients">Patients </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/doctor">Doctors </a>
       </li>
       

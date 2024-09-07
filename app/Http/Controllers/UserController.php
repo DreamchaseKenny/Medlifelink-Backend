@@ -262,6 +262,7 @@ class UserController extends Controller
             'consultation_amount' => [ 'numeric'],
             'specialization' => [ 'string', 'min:2'],
             'photo' => [ 'string', 'min:2'],
+            'email' => [ 'string', 'min:2'],
 
             
             

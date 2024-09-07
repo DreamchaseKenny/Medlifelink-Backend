@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('appointment_date');
             $table->string('title')->default("");
             $table->string('link');
+            $table->float('price');
             $table->string('type')->default("");
             $table->string('status')->default("pending");
             $table->text('description')->default("");

@@ -7,19 +7,19 @@
     <div>
         http://127.0.0.1:8000/api/create_user
         <h2>Request</h2>
-        <p>
+          <pre>
             {
             email:mark@gmail.com
             role:patient
             username:mark
             password:123456
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+          <pre>
             [
             {
             "message": "Registeration successful",
@@ -47,7 +47,7 @@
             }
             }
             ]
-        </p>
+          </pre>
     </div>
 
 </div>
@@ -60,17 +60,17 @@
     <div>
         http://127.0.0.1:8000/api/login_user
         <h2>Request</h2>
-        <p>
+          <pre>
             {
             email:mark@gmail.com
             password:123456
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+          <pre>
             [
             {
             "message": "Login successful",
@@ -98,7 +98,7 @@
             }
             }
             ]
-        </p>
+          </pre>
     </div>
 
 </div>
@@ -108,127 +108,26 @@
 
 ////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////
-
-<button class="accordion">Prescribe Medication</button>
-<div class="panel">
-    <div>
-        http://127.0.0.1:8000/api/create_prescription
-        <h2>Request</h2>
-        <p>
-            {
-            user_id:3
-            prescribed_by:4
-            medicine_name:meeting
-            dosage:for medicaion
-            frequency:2x a day
-            start_date:2014-08-12 11:14:54
-            note:sleep well
-            }
-        </p>
-    </div>
-
-    <div>
-        <h2>Response</h2>
-        <p>
-            [
-            {
-            "message": "medicaion prescription successful",
-            "status": true,
-            "data": {
-            "user_id": "3",
-            "prescribed_by": "4",
-            "medicine_name": "meeting",
-            "dosage": "for medicaion",
-            "frequency": "2x a day",
-            "start_date": "2014-08-12 11:14:54",
-            "note": "sleep well",
-            "updated_at": "2024-04-18T11:14:57.000000Z",
-            "created_at": "2024-04-18T11:14:57.000000Z",
-            "id": 1
-            }
-            }
-            ]
-
-        </p>
-    </div>
-
-</div>
-
-////////////////////////////////////////////////////////////////////////
-
-<button class="accordion">List of Medication</button>
-<div class="panel">
-    <div>
-        http://127.0.0.1:8000/api/list_medications
-        <h2>Request</h2>
-        <p>
-            {
-            user_id:3
-
-            }
-        </p>
-    </div>
-
-    <div>
-        <h2>Response</h2>
-        <p>
-            [
-
-            {
-            "message": "medicaions successfully fetched",
-            "status": true,
-            "data": [ {
-            "user_id": "3",
-            "prescribed_by": "4",
-            "medicine_name": "meeting",
-            "dosage": "for medicaion",
-            "frequency": "2x a day",
-            "start_date": "2014-08-12 11:14:54",
-            "note": "sleep well",
-            "updated_at": "2024-04-18T11:14:57.000000Z",
-            "created_at": "2024-04-18T11:14:57.000000Z",
-            "id": 1
-            },
-            {
-            "user_id": "3",
-            "prescribed_by": "4",
-            "medicine_name": "meeting",
-            "dosage": "for medicaion",
-            "frequency": "2x a day",
-            "start_date": "2014-08-12 11:14:54",
-            "note": "sleep well",
-            "updated_at": "2024-04-18T11:14:57.000000Z",
-            "created_at": "2024-04-18T11:14:57.000000Z",
-            "id": 1
-            }
-            ]
-            }
-            ]
-        </p>
-    </div>
-
-</div>
 
 
-////////////////////////////////////////////////////////////////////////
+
 
 <button class="accordion">get user by ID</button>
 <div class="panel">
     <div>
         http://127.0.0.1:8000/api/get_user
         <h2>Request</h2>
-        <p>
+          <pre>
             {
             user_id:8
 
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+          <pre>
             [
             {
             "message": " successful",
@@ -264,7 +163,7 @@
             }
             }
             ]
-        </p>
+          </pre>
     </div>
 
 </div>
@@ -281,7 +180,7 @@
     <div>
         http://127.0.0.1:8000/api/update_user
         <h2>Post Request</h2>
-        <p>
+          <pre>
             {
             'phone' : 09087877766,
             'fullname' => mark john,
@@ -291,14 +190,15 @@
             'address' => 123 enugu road,
             'dob' => 2000-4-12,
             "user_id"=>3,
+            email=>email@gmail.cm
 
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+          <pre>
             {
             "message": " successful",
             "status": true,
@@ -334,7 +234,7 @@
             "updated_at": "2024-06-26T08:35:56.000000Z"
             }
             }
-        </p>
+          </pre>
     </div>
 
 </div>
@@ -349,7 +249,7 @@
     <div>
         http://127.0.0.1:8000/api/fund_wallet
         <h2>Post Request</h2>
-        <p>
+          <pre>
             {
             'amount' : 500,
             'user_id' : 1,
@@ -360,12 +260,12 @@
 
 
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+          <pre>
             {
             "message": "This transaction has been credited before",
             "status": false,
@@ -386,88 +286,13 @@
             }
 
             }
-        </p>
+          </pre>
     </div>
 </div>
 
 
 
-
-////////////////////////////////////////////////////////////////////////
-
-<button class="accordion">Update Appointment status</button>
-
-<div class="panel">
-    <div>
-        http://127.0.0.1:8000/api/appointment/status
-        <h2>Post Request</h2>
-        <p>
-            {
-
-            'appointment_id' : 1,
-            'action' : pending || approve || cancel,
-
-
-
-
-            }
-        </p>
-    </div>
-
-    <div>
-        <h2>Response</h2>
-        <p>
-            {
-            "message": "successfull",
-            "status": true,
-
-
-            }
-        </p>
-    </div>
-</div>
-
-
-////////////////////////////////////////////////////////////////////////
-
-<button class="accordion">Delete Appointment </button>
-
-<div class="panel">
-    <div>
-        http://127.0.0.1:8000/api/appointment/delete
-        <h2>Post Request</h2>
-        <p>
-            {
-
-            'appointment_id' : 1,
-
-
-
-
-
-            }
-        </p>
-    </div>
-
-    <div>
-        <h2>Response</h2>
-        <p>
-            {
-            "message": "successfull",
-            "status": true,
-
-
-            }
-        </p>
-    </div>
-
-
-
-
-</div>
-
-
-////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
 
 <button class="accordion">Update user professional Details </button>
 
@@ -475,7 +300,7 @@
     <div>
         http://127.0.0.1:8000/api/user/update_prof_info
         <h2>Post Request</h2>
-        <p>
+          <pre>
             {
 
             'photo' : https://photolink/photo.png,
@@ -488,12 +313,12 @@
 
 
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+          <pre>
             {
             "message": " successful",
             "status": true,
@@ -529,7 +354,7 @@
             "updated_at": "2024-07-04T08:27:33.000000Z"
             }
             }
-        </p>
+          </pre>
     </div>
 
 
@@ -546,7 +371,7 @@
     <div>
         http://127.0.0.1:8000/api/user/update_password
         <h2>Post Request</h2>
-        <p>
+          <pre>
             {
 
             'user_id' : 1,
@@ -558,12 +383,12 @@
 
 
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+          <pre>
             {
             "message": " successful",
             "status": true,
@@ -599,7 +424,7 @@
             "updated_at": "2024-07-04T08:27:33.000000Z"
             }
             }
-        </p>
+          </pre>
     </div>
 </div>
 
@@ -612,7 +437,7 @@
     <div>
         http://127.0.0.1:8000/api/user/forgotpassword
         <h2>Post Request</h2>
-        <p>
+          <pre>
             {
 
             'email' : user@gmail.com,
@@ -623,17 +448,17 @@
 
 
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+          <pre>
             {
             "message": " otp sent",
             "status": true
             }
-        </p>
+          </pre>
     </div>
 </div>
 
@@ -647,7 +472,7 @@
     <div>
         http://127.0.0.1:8000/api/otp/confirm
         <h2>Post Request</h2>
-        <p>
+          <pre>
             {
 
             'email' : user@gmail.com,
@@ -659,12 +484,12 @@
 
 
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+          <pre>
             {
                 "message": " successful",
                 "status": true,
@@ -700,7 +525,7 @@
                 "updated_at": "2024-07-04T08:27:33.000000Z"
                 }
                 }
-        </p>
+          </pre>
     </div>
 </div>
 
@@ -716,7 +541,7 @@
     <div>
         http://127.0.0.1:8000/api/user/changePassword
         <h2>Post Request</h2>
-        <p>
+          <pre>
             {
 
             'email' : user@gmail.com,
@@ -728,12 +553,12 @@
 
 
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+          <pre>
             {
             "message": " successful",
             "status": true,
@@ -769,7 +594,7 @@
             "updated_at": "2024-07-04T08:27:33.000000Z"
             }
             }
-        </p>
+          </pre>
     </div>
 </div>
 

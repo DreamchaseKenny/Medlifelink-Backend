@@ -1,37 +1,37 @@
 @include('layouts.header')
 
-    <h1 class="text-primary"> (Doctors) </h1>
+<h1 class="text-primary"> (Doctors) </h1>
 
-   
 
-    ////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////
 
 <button class="accordion">Prescribe Medication</button>
 <div class="panel">
     <div>
-    http://127.0.0.1:8000/api/create_prescription
+        http://127.0.0.1:8000/api/create_prescription
         <h2>Request</h2>
-        <p>
+          <pre>
             {
-                user_id:3
-prescribed_by:4
-medicine_name:meeting
-dosage:for medicaion
-frequency:2x a day
-start_date:2014-08-12 11:14:54
-note:sleep well
+            user_id:3
+            prescribed_by:4
+            medicine_name:meeting
+            dosage:for medicaion
+            frequency:2x a day
+            start_date:2014-08-12 11:14:54
+            note:sleep well
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
-        [
-    {
-        "message": "medicaion prescription successful",
-        "status": true,
-        "data": {
+          <pre>
+            [
+            {
+            "message": "medicaion prescription successful",
+            "status": true,
+            "data": {
             "user_id": "3",
             "prescribed_by": "4",
             "medicine_name": "meeting",
@@ -42,10 +42,10 @@ note:sleep well
             "updated_at": "2024-04-18T11:14:57.000000Z",
             "created_at": "2024-04-18T11:14:57.000000Z",
             "id": 1
-        }
-    }
-]
-        </p>
+            }
+            }
+            ]
+          </pre>
     </div>
 
 </div>
@@ -57,57 +57,57 @@ note:sleep well
 <button class="accordion">Get doctors patients</button>
 <div class="panel">
     <div>
-    http://127.0.0.1:8000/api/doctor/patients
+        http://127.0.0.1:8000/api/doctor/patients
         <h2>Request</h2>
-        <p>
+          <pre>
             {
-                doctor_id:8
+            doctor_id:8
 
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
-        [
-    {
-        "message": "Patients successfully fetched",
-        "status": true,
-        "data": [
+          <pre>
+            [
             {
-                "id": 11,
-                "user_id": "FZ2IEX7M",
-                "fullname": "postial doctor",
-                "balance": 0,
-                "email": "ugwumba1@gmail.com",
-                "username": "ugwumba1",
-                "phone": "098988834",
-                "country_code": "+234",
-                "country": "Nigeria",
-                "gender": "male",
-                "address": "123 address",
-                "specialization": "Toot",
-                "verification_code": null,
-                "email_verified": 0,
-                "status": "active",
-                "role": "patient",
-                "created_by": "8",
-                "rating": "",
-                "role_id": "1",
-                "email_verified_at": null,
-                "weight": "0",
-                "height": "0",
-                "blood_pressure": "",
-                "glucose_level": "",
-                "photo": "",
-                "created_at": "2024-05-09T16:24:22.000000Z",
-                "updated_at": "2024-05-09T16:24:22.000000Z"
+            "message": "Patients successfully fetched",
+            "status": true,
+            "data": [
+            {
+            "id": 11,
+            "user_id": "FZ2IEX7M",
+            "fullname": "postial doctor",
+            "balance": 0,
+            "email": "ugwumba1@gmail.com",
+            "username": "ugwumba1",
+            "phone": "098988834",
+            "country_code": "+234",
+            "country": "Nigeria",
+            "gender": "male",
+            "address": "123 address",
+            "specialization": "Toot",
+            "verification_code": null,
+            "email_verified": 0,
+            "status": "active",
+            "role": "patient",
+            "created_by": "8",
+            "rating": "",
+            "role_id": "1",
+            "email_verified_at": null,
+            "weight": "0",
+            "height": "0",
+            "blood_pressure": "",
+            "glucose_level": "",
+            "photo": "",
+            "created_at": "2024-05-09T16:24:22.000000Z",
+            "updated_at": "2024-05-09T16:24:22.000000Z"
             }
-        ]
-    }
-]
-        </p>
+            ]
+            }
+            ]
+          </pre>
     </div>
 
 </div>
@@ -118,11 +118,14 @@ note:sleep well
 <button class="accordion">Doctor Create patients </button>
 <div class="panel">
     <div>
-    http://127.0.0.1:8000/api/doctor/create_patient
+        http://127.0.0.1:8000/api/doctor/create_patient
         <h2>Request</h2>
-        <p>
+          <pre>
+
+        <pre>
+
             {
-                doctor_id:8
+doctor_id:8
 role:patient
 email:ugwumba@gmail.com
 password:12345678
@@ -131,17 +134,23 @@ country_code:+234
 country:Nigeria
 gender:male
 address:123 address
-
 phone:098988834
 username:ugwumba
+allergies:[ugwumba,anyher],
+"family_history":"",
+"social_history":"",
+"sogical_history":"",
+"photo":"",
 
             }
-        </p>
+       
+        <pre>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+          <pre>
         [
     {
         "message": "Registeration successful",
@@ -178,7 +187,7 @@ username:ugwumba
         }
     }
 ]
-        </p>
+          </pre>
     </div>
 
 </div>
@@ -191,17 +200,17 @@ username:ugwumba
     <div>
     http://127.0.0.1:8000/api/doctors
         <h2>Post Request</h2>
-        <p>
+          <pre>
             {
                 user_id:1
 
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+          <pre>
         
     {
         "message": "Doctors  successful fetched",
@@ -241,75 +250,13 @@ username:ugwumba
         ]
     }
 
-        </p>
+          </pre>
     </div>
 
 </div>
 
 
 
-////////////////////////////////////////////////////////////////////////
-
-<button class="accordion">Get patiens of Doctors </button>
-<div class="panel">
-    <div>
-    http://127.0.0.1:8000/api/patients/doctor
-        <h2>Post Request</h2>
-        <p>
-            {
-                patients_id:1
-
-            }
-        </p>
-    </div>
-
-    <div>
-        <h2>Response</h2>
-        <p>
-        
-        {
-    "message": "Doctors successfully fetched",
-    "status": true,
-    "data": [
-        {
-            "id": 1,
-            "user_id": "5NLTCRS2",
-            "fullname": "postial doctor",
-            "balance": 25000,
-            "email": "email@gmail.com",
-            "username": "martins",
-            "phone": "098988834",
-            "country_code": "+234",
-            "country": "Nigeria",
-            "gender": "male",
-            "address": "123 address",
-            "specialization": "Toot",
-            "verification_code": null,
-            "email_verified": 0,
-            "status": "active",
-            "role": "doctor",
-            "created_by": "",
-            "rating": "",
-            "dob": "dob",
-            "consultation_amount": "0",
-            "role_id": "1",
-            "email_verified_at": null,
-            "weight": "0",
-            "height": "0",
-            "blood_pressure": "",
-            "glucose_level": "",
-            "photo": "",
-            "created_at": "2024-06-26T09:47:28.000000Z",
-            "updated_at": "2024-06-26T11:03:13.000000Z"
-        }
-    ]
-}
-    
-
-        </p>
-    </div>
-
-</div>
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -319,7 +266,7 @@ username:ugwumba
     <div>
     http://127.0.0.1:8000/api/doctors/withdraw
         <h2>Post Request</h2>
-        <p>
+          <pre>
             {
                 user_id:2
 acc_number:7878877878
@@ -327,12 +274,12 @@ acc_name:Mark doctore
 bank_name:First bank
 
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+          <pre>
         
         {
     "message": "success",
@@ -355,7 +302,7 @@ bank_name:First bank
     }
 }
 
-        </p>
+          </pre>
     </div>
 
 </div>
@@ -369,7 +316,7 @@ bank_name:First bank
     <div>
     http://127.0.0.1:8000/api/doctors/activate
         <h2>Post Request</h2>
-        <p>
+          <pre>
             {
                 user_id:2
                 amount:7000
@@ -377,12 +324,12 @@ reference:HJUYUHHHJJ787
 gateway:paystack
 
             }
-        </p>
+          </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+          <pre>
         
         {
     "message": "success",
@@ -405,7 +352,7 @@ gateway:paystack
     }
 }
 
-        </p>
+          </pre>
     </div>
 
 </div>
@@ -413,12 +360,3 @@ gateway:paystack
 
 
 @include('layouts.footer')
-
-
-
-
-
-
-
-
-

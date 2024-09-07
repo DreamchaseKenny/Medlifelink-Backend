@@ -10,6 +10,42 @@ use App\Http\Controllers\MailController;
 
 class AppointmentController extends Controller
 {
+
+
+
+    
+    /**
+     *This functions is used to validate inputs in this controller.
+     */
+
+
+    function validateInputs( Array $keyAndRules,Request $request, String $message, ){
+        ///This 
+       
+        $validator = Validator::make($request->all(),$keyAndRules);
+
+        if($validator->fails()){
+           
+          
+            return response()->json(["message"=>$message,
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+            die;
+        } 
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Display a listing of the Appointment.
      */
@@ -94,7 +130,7 @@ class AppointmentController extends Controller
             'patient_id' => ['required','max:255'],
             'appointment_time' => ['required','max:255'],
             'appointment_date' => ['required','max:255'],
-            'type' => [],
+            'type' => ['required'],
             'link' => ['required'],
             'title' => ['required','max:255'],
             'description' => ['required'],
@@ -106,7 +142,7 @@ class AppointmentController extends Controller
             "status"=>false,"errors"=>$validator->messages()->all()]);
         } 
         
-        else {
+    
             $doctor= User::find($request->doctor_id);
             $patient = User::find($request->patient_id);
 
@@ -118,7 +154,26 @@ class AppointmentController extends Controller
 
             }
 
+           
+
+            ////check if patient balance is sufficient
+            if($patient->balance < $doctor->consultation_amount ){
+
+
+                return response()->json(["message"=>"appointment booking failed: reason insufficient balance ",
+                "status"=>false,"errors"=>"reason insufficient balance"]);
+
+
+            }
+            
+            
+            ////////////////////////////////////////
             $request['status'] = "pending";
+            $request['price'] = $doctor->consultation_amount;
+
+            ////////////Deduct money from users balance/////////////
+            $patient->balance = ($patient->balance -  $doctor->consultation_amount);
+            $patient->save();
 
 
 
@@ -141,63 +196,215 @@ class AppointmentController extends Controller
                 "data"=>$appointment]
             );
 
-        }
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Appointment $appointment)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Appointment $appointment)
-    {
-        //
-    }
 
+
+
+
+
+
+
+    
     /**
-     * Update the specified resource in storage.
+     * update  Appointment .
      */
     public function update(Request $request)
     {
         //
+
+        $validator = Validator::make($request->all(),[
+           
+            
+           
+            'appointment_time' => ['required','max:255'],
+            'appointment_date' => ['required','max:255'],
+            'type' => ['required'],
+            'link' => ['required'],
+            'title' => ['required','max:255'],
+            'description' => ['required'],
+            'appointment_id' => ['required','max:255'],
+        ]);
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"Booking falied  ",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        } 
+
+
+        
+     //
         $appointment = Appointment::find($request->appointment_id);
+
+
 
         if($appointment == null){
             return response()->json(["message"=>"appointment not found",
                 "status"=>false,"errors"=>"appointment not found"]);
         }
 
-        if($request->action == "pending"){
-            $appointment->status = "pending";
+        /////when appointment is cancelled or  cmpleted
 
-        }else
+        if($appointment->status == "completed" ){
+            return response()->json(["message"=>"Appointment is already completed",
+                "status"=>false,"errors"=>"invalid action"]);
+        }if($appointment->status == "cancelled" ){
+            return response()->json(["message"=>"Appointment is already cancelled",
+                "status"=>false,"errors"=>"invalid action"]);
+        }
+
+        ////////////////////////////////////
+
+
+        /////// get the doctor and patient invlved
+        $doctor= User::find($appointment->doctor_id);
+        $patient = User::find($appointment->patient_id);
+
+
+           
+
+
+
+
+
+            
+                
+        $appointment->appointment_time = $request->appointment_time;
+        $appointment->appointment_date =  $request->appointment_date;
+        $appointment->type =  $request->type;
+        $appointment->link =  $request->link;
+        $appointment->title =  $request->title;
+        $appointment->description =  $request->description;
+
+        $appointment->save();
+
+
+            
+            
+            $mailController = (new MailController);
+            ///send email to booked with (booker)
+            $message = "Your Appointment has been updated ";
+            $mailController->appointmentMail($appointment,$doctor,$message);
+
+            ///send email to booked with (booker)
+            $message = "Your Appointment has been updated with $doctor->fullname ";
+            $mailController->appointmentMail($appointment,$patient,$message);
+            $appointment['doctor'] = $doctor;
+            $appointment['patient'] = $patient;
+
+            return response()->json(
+                ['message'=> 'Registeration successful','status'=>true,
+              
+                "data"=>$appointment]
+            );
+
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+   
+
+   
+
+    /**
+     * Update Appintment status . (approve,completed)
+     */
+    public function updateStatus(Request $request)
+    {
+
+
+            $validator = Validator::make($request->all(),[
+           
+            
+                'appointment_id' => ['required', 'max:255'],
+                'action' => ['required', 'max:255'],
+            
+            ]);
+    
+            if($validator->fails()){
+              
+                return response()->json(["message"=>"update falied  ",
+                "status"=>false,"errors"=>$validator->messages()->all()]);
+            } 
+        //
+        $appointment = Appointment::find($request->appointment_id);
+
+
+
+        if($appointment == null){
+            return response()->json(["message"=>"appointment not found",
+                "status"=>false,"errors"=>"appointment not found"]);
+        }
+
+        /////when appointment is cancelled or  cmpleted
+
+        if($appointment->status == "completed" ){
+            return response()->json(["message"=>"Appointment is already completed",
+                "status"=>false,"errors"=>"invalid action"]);
+        }if($appointment->status == "cancelled" ){
+            return response()->json(["message"=>"Appointment is already cancelled",
+                "status"=>false,"errors"=>"invalid action"]);
+        }
+
+        ////////////////////////////////////
+
+
+        /////// get the doctor and patient invlved
+        $doctor= User::find($appointment->doctor_id);
+        $patient = User::find($appointment->patient_id);
+
+
+
+        ////
+
+       
         if($request->action == "approve"){
             $appointment->status = "active";
 
         }else
-        if($request->action == "cancel"){
-            $appointment->status = "canceled";
+        if($request->action == "completed"){
+            if($appointment->status == "pending"){
+                return response()->json(["message"=>"Appointment is has not been approved",
+                    "status"=>false,"errors"=>"invalid action"]);
+            }
+            $appointment->status = "completed";
 
-        }else{
-            return response()->json(["message"=>"invalid action (action must be pending,approve or cancel)",
+             ///credit  doctor/////
+        $doctor_new_balance = $doctor->balance + $appointment->price;
+        $doctor->balance = $doctor_new_balance;
+        $doctor->save();
+
+        }
+         else{
+            return response()->json(["message"=>"invalid action (action must be approve or completed  )",
                 "status"=>false,"errors"=>"invalid action"]);
         }
 
+       
+
         $appointment->save();
+
+        
+        $appointment['doctor'] = $doctor;
+        $appointment['patient'] = $patient;
+
+        ////send email ////
+
+
+        //// end f send email////
 
        
             return response()->json(["message"=>"Successfully $request->action",
@@ -208,8 +415,122 @@ class AppointmentController extends Controller
 
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     /**
+     * cancel Appintment 
+     */
+    public function cancel(Request $request)
+    {
+
+
+            $validator = Validator::make($request->all(),[
+           
+            
+                'appointment_id' => ['required', 'max:255'],
+                
+            
+            ]);
+    
+            if($validator->fails()){
+              
+                return response()->json(["message"=>"update falied  ",
+                "status"=>false,"errors"=>$validator->messages()->all()]);
+            } 
+        //
+        $appointment = Appointment::find($request->appointment_id);
+
+        
+        if($appointment == null){
+            return response()->json(["message"=>"appointment not found",
+                "status"=>false,"errors"=>"appointment not found"]);
+        }
+
+       
+         /////when appointment is cancelled or  cmpleted
+
+         if($appointment->status == "completed" ){
+            return response()->json(["message"=>"Appointment is already completed",
+                "status"=>false,"errors"=>"invalid action"]);
+        }else if($appointment->status == "cancelled"){
+            return response()->json(["message"=>"Appointment is already cancelled",
+                "status"=>false,"errors"=>"invalid action"]);
+        }
+
+        ////////////////////////////////////
+        
+        $doctor= User::find($appointment->doctor_id);
+        $patient = User::find($appointment->patient_id);
+
+       
+
+        ///refund patient/////
+        // $doctor_new_balance = $doctor->balance - $appointment->price;
+        // $doctor->balance = $doctor_new_balance;
+        // $doctor->save();
+
+
+        $patient_new_balance = $patient->balance + $appointment->price;
+        $patient->balance = $patient_new_balance;
+        $patient->save();
+
+      
+
+        
+
+
+
+
+
+
+        //////end of refund patient////
+        $appointment->status = "cancelled";
+
+        $appointment->save();
+
+        $appointment['doctor'] = $doctor;
+        $appointment['patient'] = $patient;
+
+
+         ////send email ////
+
+
+        //// end f send email////
+
+
+       
+            return response()->json(["message"=>"Successfully $request->action",
+                "status"=>true,
+                "data"=> $appointment
+            ]);
+        
+
+    }
+
+
+
+
+
+
+
+
+
+
+
     /**
-     * Remove the specified resource from storage.
+     * Delete appointment.
      */
     public function destroy(Request $request)
     {
