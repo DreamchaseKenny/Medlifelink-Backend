@@ -11,18 +11,18 @@
     <div>
     http://127.0.0.1:8000/api/subscriber/create
         <h2>POST Request</h2>
-        <p>
+       <pre>
             {
                 name : 'optional',
                 "email": "mark@gmail.com (Unique)"
 
             }
-        </p>
+       </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+       <pre>
         {
     "message": " successfully added",
     "status": true,
@@ -33,7 +33,7 @@
         "id": 6
     }
 }
-        </p>
+       </pre>
     </div>
 
 </div>
@@ -46,18 +46,18 @@
     <div>
     http://127.0.0.1:8000/api/subscribers/{user_id}
         <h2>GET Request</h2>
-        <!-- <p>
+        <!--<pre>
             {
                 name : 'optional',
                 "email": "mark@gmail.com (Unique)"
 
             }
-        </p> -->
+       </pre> -->
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+       <pre>
         {
     "message": "Subscribers successfully fetched",
     "status": true,
@@ -106,7 +106,7 @@
         }
     ]
 }
-        </p>
+       </pre>
     </div>
 
 </div>
@@ -119,18 +119,18 @@
     <div>
     http://127.0.0.1:8000/api/subscriber/create
         <h2>POST Request</h2>
-        <p>
+       <pre>
             {
                 name : 'optional',
                 "email": "mark@gmail.com (Unique)"
 
             }
-        </p>
+       </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+       <pre>
         {
     "message": " successfully added",
     "status": true,
@@ -141,7 +141,7 @@
         "id": 6
     }
 }
-        </p>
+       </pre>
     </div>
 
 </div>
@@ -156,24 +156,24 @@
     <div>
     http://127.0.0.1:8000/api/subscriber/delete
         <h2>POST Request</h2>
-        <p>
+       <pre>
             {
                 email : 'mark@gmail.com',
                 
 
             }
-        </p>
+       </pre>
     </div>
 
     <div>
         <h2>Response</h2>
-        <p>
+       <pre>
         {
     "message": " successfully added",
     "status": true,
    
 }
-        </p>
+       </pre>
     </div>
 
 </div>

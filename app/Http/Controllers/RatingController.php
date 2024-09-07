@@ -53,9 +53,9 @@ class RatingController extends Controller
         
 
         return response()->json([
-            ['message'=> 'Rating successfully fetched','status'=>true,
+            'message'=> 'Rating successfully fetched','status'=>true,
           
-            "data"=>$userRatings]
+            "data"=>$userRatings
         ]);
         
 
