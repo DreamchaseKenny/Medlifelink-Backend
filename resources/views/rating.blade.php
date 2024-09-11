@@ -6,7 +6,7 @@
 
     ////////////////////////////////////////////////////////////////////////
 
-<button class="accordion">List od user Ratings</button>
+<button class="accordion">List of user Ratings</button>
 <div class="panel">
     <div>
     http://127.0.0.1:8000/api/ratings

@@ -47,6 +47,10 @@ Route::post('/appointment/cancel', [App\Http\Controllers\AppointmentController::
 Route::post('/appointment/update', [App\Http\Controllers\AppointmentController::class, 'update'])->name("appointment.update");
 Route::post('/appointment/reschedule', [App\Http\Controllers\AppointmentController::class, 'reschedule'])->name("appointment.reschedule");
 
+Route::post('/appointment/active', [App\Http\Controllers\AppointmentController::class, 'activeAppointments'])->name("appointment.active");
+Route::post('/appointment/recent', [App\Http\Controllers\AppointmentController::class, 'recentAppointments'])->name("appointment.recent");
+
+
 
 
 

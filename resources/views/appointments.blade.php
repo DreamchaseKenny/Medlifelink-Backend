@@ -587,5 +587,251 @@ appointment_id:2
 ////////////////////////////////////////////////////////////////////////
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Get Active Appointments </button>
+
+<div class="panel">
+    <div>
+        http://127.0.0.1:8000/api/appointment/active
+        <h2>Post Request</h2>
+          <pre>
+            {
+
+            'user_id' : 1,
+
+             }
+          </pre>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+          <pre>
+          {
+    "message": "Successfully ",
+    "status": true,
+    "data": [
+        {
+            "id": 1,
+            "doctor_id": 1,
+            "patient_id": 2,
+            "appointment_time": "00:00:12.000000",
+            "appointment_date": "1970-01-01",
+            "price": 0,
+            "title": "title",
+            "link": "lllll",
+            "type": "",
+            "status": "active",
+            "description": "desc",
+            "created_at": "2024-09-04T23:14:29.000000Z",
+            "updated_at": "2024-09-04T23:14:29.000000Z",
+            "doctor": {
+                "id": 1,
+                "user_id": "FIU3WWVU",
+                "fullname": "",
+                "balance": 0,
+                "email": "zhinzeu@gmail.com",
+                "username": "zhinzeu",
+                "phone": "",
+                "country_code": "",
+                "country": "",
+                "gender": "",
+                "address": "",
+                "specialization": "",
+                "verification_code": null,
+                "email_verified": 0,
+                "status": "active",
+                "role": "doctor",
+                "created_by": "",
+                "rating": "2.2",
+                "dob": "",
+                "consultation_amount": "50",
+                "role_id": "2",
+                "email_verified_at": null,
+                "weight": "0",
+                "height": "0",
+                "blood_pressure": "",
+                "glucose_level": "",
+                "photo": "",
+                "created_at": "2024-09-04T23:05:18.000000Z",
+                "updated_at": "2024-09-07T17:40:35.000000Z"
+            },
+            "patient": {
+                "id": 2,
+                "user_id": "NCLTNJUN",
+                "fullname": "",
+                "balance": 0,
+                "email": "zhinzeu2@gmail.com",
+                "username": "zhinzeu2",
+                "phone": "",
+                "country_code": "",
+                "country": "",
+                "gender": "",
+                "address": "",
+                "specialization": "",
+                "verification_code": null,
+                "email_verified": 0,
+                "status": "active",
+                "role": "doctor",
+                "created_by": "",
+                "rating": "",
+                "dob": "",
+                "consultation_amount": "0",
+                "role_id": "2",
+                "email_verified_at": null,
+                "weight": "0",
+                "height": "0",
+                "blood_pressure": "",
+                "glucose_level": "",
+                "photo": "",
+                "created_at": "2024-09-04T23:05:32.000000Z",
+                "updated_at": "2024-09-04T23:05:32.000000Z"
+            }
+        }
+    ]
+}
+          </pre>
+    </div>
+
+
+
+
+</div>
+
+
+////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Get Recent Appointments </button>
+
+<div class="panel">
+    <div>
+        http://127.0.0.1:8000/api/appointment/recent
+        <h2>Post Request</h2>
+          <pre>
+            {
+
+            'user_id' : 1,
+
+             }
+          </pre>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+          <pre>
+          {
+    "message": "Successfully ",
+    "status": true,
+    "data": [
+        {
+            "id": 1,
+            "doctor_id": 1,
+            "patient_id": 2,
+            "appointment_time": "00:00:12.000000",
+            "appointment_date": "1970-01-01",
+            "price": 0,
+            "title": "title",
+            "link": "lllll",
+            "type": "",
+            "status": "completed",
+            "description": "desc",
+            "created_at": "2024-09-04T23:14:29.000000Z",
+            "updated_at": "2024-09-04T23:14:29.000000Z",
+            "doctor": {
+                "id": 1,
+                "user_id": "FIU3WWVU",
+                "fullname": "",
+                "balance": 0,
+                "email": "zhinzeu@gmail.com",
+                "username": "zhinzeu",
+                "phone": "",
+                "country_code": "",
+                "country": "",
+                "gender": "",
+                "address": "",
+                "specialization": "",
+                "verification_code": null,
+                "email_verified": 0,
+                "status": "active",
+                "role": "doctor",
+                "created_by": "",
+                "rating": "2.2",
+                "dob": "",
+                "consultation_amount": "50",
+                "role_id": "2",
+                "email_verified_at": null,
+                "weight": "0",
+                "height": "0",
+                "blood_pressure": "",
+                "glucose_level": "",
+                "photo": "",
+                "created_at": "2024-09-04T23:05:18.000000Z",
+                "updated_at": "2024-09-07T17:40:35.000000Z"
+            },
+            "patient": {
+                "id": 2,
+                "user_id": "NCLTNJUN",
+                "fullname": "",
+                "balance": 0,
+                "email": "zhinzeu2@gmail.com",
+                "username": "zhinzeu2",
+                "phone": "",
+                "country_code": "",
+                "country": "",
+                "gender": "",
+                "address": "",
+                "specialization": "",
+                "verification_code": null,
+                "email_verified": 0,
+                "status": "active",
+                "role": "doctor",
+                "created_by": "",
+                "rating": "",
+                "dob": "",
+                "consultation_amount": "0",
+                "role_id": "2",
+                "email_verified_at": null,
+                "weight": "0",
+                "height": "0",
+                "blood_pressure": "",
+                "glucose_level": "",
+                "photo": "",
+                "created_at": "2024-09-04T23:05:32.000000Z",
+                "updated_at": "2024-09-04T23:05:32.000000Z"
+            }
+        }
+    ]
+}
+          </pre>
+    </div>
+
+
+
+
+</div>
+
+
+////////////////////////////////////////////////////////////////////////
+
+
     
 @include('layouts.footer')

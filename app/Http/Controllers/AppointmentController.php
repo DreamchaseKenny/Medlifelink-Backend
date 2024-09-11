@@ -656,6 +656,20 @@ class AppointmentController extends Controller
     {
         //
 
+        $validator = Validator::make($request->all(),[
+           
+            
+            'appointment_id' => ['required', 'max:255'],
+            
+        
+        ]);
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"delete falied  ",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        } 
+
         $appointment = Appointment::find($request->appointment_id);
 
         if($appointment == null){
@@ -668,6 +682,137 @@ class AppointmentController extends Controller
        
             return response()->json(["message"=>"Successfully deleted",
                 "status"=>true]);
+
+        
+
+    }
+
+
+
+
+      /**
+     * get active Appointments .
+     */
+    public function activeAppointments(Request $request)
+    {
+        //
+
+        $validator = Validator::make($request->all(),[
+           
+            
+            'user_id' => ['required', 'max:255'],
+            
+        
+        ]);
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"fetch falied  ",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        } 
+
+        $appointments = Appointment::where(function ($query,)use ($request) {
+            $query->where('doctor_id', '=', $request->user_id)
+                  ->orWhere('patient_id', '=', $request->user_id);
+        })->where(function ($query) {
+            $query->where('status', '=', "active");
+        })->orderBy("id","desc")->get();
+
+
+        
+
+        $appointmentList = [];
+
+        foreach($appointments as $appointment){
+            $doctor = User::find($appointment->doctor_id);
+            $patient = User::find($appointment->patient_id);
+
+            $appointment["doctor"] =  $doctor;
+            $appointment["patient"] =  $patient;
+            array_push($appointmentList,$appointment);
+
+            
+        }
+
+
+             
+        
+        
+        
+
+
+       
+            return response()->json(["message"=>"Successfully ",
+                "status"=>true,"data"=>$appointmentList]);
+
+        
+
+    }
+
+
+
+
+
+
+
+
+
+
+    
+      /**
+     * get recent Appointments .
+     */
+    public function recentAppointments(Request $request)
+    {
+        //
+
+        $validator = Validator::make($request->all(),[
+           
+            
+            'user_id' => ['required', 'max:255'],
+            
+        
+        ]);
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"delete falied  ",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        } 
+
+        $appointments = Appointment::where(function ($query)use ($request) {
+            $query->where('doctor_id', '=', $request->user_id)
+                  ->orWhere('patient_id', '=', $request->user_id);
+        })->where(function ($query) {
+            $query->where('status', '!=', "active");
+        })->orderBy("id","desc")->get();
+
+
+        
+
+        $appointmentList = [];
+
+        foreach($appointments as $appointment){
+            $doctor = User::find($appointment->doctor_id);
+            $patient = User::find($appointment->patient_id);
+
+            $appointment["doctor"] =  $doctor;
+            $appointment["patient"] =  $patient;
+            array_push($appointmentList,$appointment);
+
+            
+        }
+
+
+             
+        
+        
+        
+
+
+       
+            return response()->json(["message"=>"Successfully ",
+                "status"=>true,"data"=>$appointmentList]);
 
         
 
