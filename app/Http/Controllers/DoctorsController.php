@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Appointment;
 use App\Models\Transaction;
+use App\Models\ProfessionalDetails;
 use Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\MailController;
@@ -20,16 +21,15 @@ use App\Models\User;
 
 class DoctorsController extends Controller
 {
-    //
+
+
+
+
+
+    //Get all doctors
 
     public function getDoctors(Request $request){
-        //Auth::guard('api')->check();
-         //
-        //  if(!Auth::guard('api')->check()){
-
-        //     return response()->json(["message"=>"Token validation failed",
-        //     "status"=>false,"errors"=>$validator->messages()->all()]);
-        //  }
+        
          $validator = Validator::make($request->all(),[
            
             'user_id' =>  ['required' ],
@@ -50,6 +50,29 @@ class DoctorsController extends Controller
             ]);
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+
+    Get all patients a doctor registered
+
+
+    */
 
     public function getPatients(Request $request)
     {
@@ -75,6 +98,28 @@ class DoctorsController extends Controller
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+
+    Get all doctors that is particular to a patient or 
+    doctors that a patient has booked appointment with
+
+
+    */
+
     public function getPatientsDoctor(Request $request)
     {
         //
@@ -91,7 +136,7 @@ class DoctorsController extends Controller
         } else {
            /////////////////////////////////////
 
-           $appointments = Appointment::where("booked_by",$request->patient_id)->orWhere("booked_with",$request->patient_id)->orderBy("id","desc")->get();
+           $appointments = Appointment::where("patient_id",$request->patient_id)->orWhere("booked_with",$request->patient_id)->orderBy("id","desc")->get();
 
             $doctors = [];
 
@@ -134,8 +179,18 @@ class DoctorsController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
    /**
-     * Show the form for creating a new resource.
+     * Doctore to create a patient.
      */
     public function createUser(Request $request)
     {
@@ -213,6 +268,15 @@ class DoctorsController extends Controller
             ]);
         }
     }
+
+
+
+
+
+
+
+
+    /* Get unique User Id for a user */
     function uniqueUserId($limit = 8)
     {
       return strtoupper(substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, $limit));
@@ -230,6 +294,24 @@ class DoctorsController extends Controller
     
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+
+    Activate a Doctor, changing the staus to active, attracts activation fee
+     */
 
 
 
@@ -306,13 +388,153 @@ class DoctorsController extends Controller
         "data" =>$transaction
     ]);
 
-       
-
-
-
-   
-   
    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /* 
+
+   This is the function that upgrades a Doctors professional details
+
+   */
+
+   function updateProfessioalDetails(Request $request){
+
+
+     //
+     $validator = Validator::make($request->all(),[
+     
+        "doctor_id" => ['required', 'integer', 'min:1'],
+        "specialization"=>['required'],
+        "clinic_affiliation"=>['required'],
+        "certifications"=>['required','array'],
+
+        "years_of_experience"=>['required'],
+        "languages"=>['required',"array"],
+        "about"=>['required'],
+       
+]);
+
+    if($validator->fails()){
+      
+        return response()->json(["message"=>"Update failed",
+        "status"=>false,"errors"=>$validator->messages()->all()]);
+    }
+
+    $professionalDetails = ProfessionalDetails::find($request->doctor_id);
+    if($professionalDetails == null){
+        ProfessionalDetails::create([
+            "doctor_id" => $request->doctor_id,
+            "specialization" => $request->specialization,
+            "clinic_affiliation" => $request->clinic_affiliation,
+            "certifications" => serialize($request->certifications),
+            "years_of_experience" => $request->years_of_experience,
+            "languages" => serialize($request->languages),
+            "about" => $request->about,
+
+
+
+        ]);
+
+        return response()->json(["message"=>"Successfully created",
+        "status"=>true]);
+    }else{
+
+        $professionalDetails->update([
+
+            "doctor_id" => $request->doctor_id,
+            "specialization" => $request->specialization,
+            "clinic_affiliation" => $request->clinic_affiliation,
+            "certifications" => serialize($request->certifications),
+            "years_of_experience" => $request->years_of_experience,
+            "languages" => serialize($request->languages),
+            "about" => $request->about,
+
+        ]);
+
+        return response()->json(["message"=>"Successfully updated",
+        "status"=>true]);
+
+
+        
+
+
+
+
+
+    }
+
+
+
+
+
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* 
+
+   This is the function that gets a Doctors professional details
+
+   */
+
+   function getProfessioalDetails(Request $request){
+
+
+    //
+    $validator = Validator::make($request->all(),[
+    
+       "doctor_id" => ['required', 'integer', 'min:1'],
+       
+      
+]);
+
+   if($validator->fails()){
+     
+       return response()->json(["message"=>"get failed",
+       "status"=>false,"errors"=>$validator->messages()->all()]);
+   }
+
+   $professionalDetails = ProfessionalDetails::find($request->doctor_id);
+   $professionalDetails->languages = unserialize( $professionalDetails->languages);
+   $professionalDetails->certifications = unserialize( $professionalDetails->certifications);
+
+   return response()->json(["message"=>"Successfully updated",
+   "status"=>true, "data"=>$professionalDetails]);
+
+
+
+
+
+}
+
+
+
+
+
 
 
 

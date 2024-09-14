@@ -65,6 +65,89 @@
 </div>
 
 
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Get website settings</button>
+<div class="panel">
+    <div>
+    http://127.0.0.1:8000/api/website/settings
+        <h2>POST Request</h2>
+        <p>
+            {
+                user_id: 1
+
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+        {
+    "message": "succes",
+    "status": true,
+    "data": {
+        "id": 1,
+        "name": "medlife",
+        "phone_number": "09999",
+        "email": "medlife@gmail.com",
+        "address": "123 address",
+        "about_us": "medlife",
+        "created_at": null,
+        "updated_at": "2024-09-14T06:31:37.000000Z"
+    }
+}
+        </p>
+    </div>
+
+</div>
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">update website settings</button>
+<div class="panel">
+    <div>
+    http://127.0.0.1:8000/api/website/settings
+        <h2>POST Request</h2>
+        <p>
+            {
+                name: medlifelink
+phone_number: 09999
+email: medlifelink@gmail.com
+address: 34 medlifelink road
+about_us: medlifelink
+
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+        {
+    "message": "succes",
+    "status": true,
+    "data": {
+        "id": 1,
+        "name": "medlife",
+        "phone_number": "09999",
+        "email": "medlife@gmail.com",
+        "address": "123 medlifelink road",
+        "about_us": "medlife",
+        "created_at": null,
+        "updated_at": "2024-09-14T06:31:37.000000Z"
+    }
+}
+        </p>
+    </div>
+
+</div>
+
+
+
 @include('layouts.footer')
 
 

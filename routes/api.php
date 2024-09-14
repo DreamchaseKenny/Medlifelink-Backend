@@ -88,6 +88,12 @@ Route::post('/hospital/create_user', [App\Http\Controllers\HospitalController::c
 ///get doctors
 Route::post('/doctors', [App\Http\Controllers\DoctorsController::class, 'getDoctors'])->name("doctors.getDoctors");
 
+///Update Doctors profesional Details
+Route::post('/doctors/professional_details', [App\Http\Controllers\DoctorsController::class, 'getProfessioalDetails'])->name("doctors.professional_details");
+///Update Doctors profesional Details
+Route::post('/doctors/update_professional_details', [App\Http\Controllers\DoctorsController::class, 'updateProfessioalDetails'])->name("doctors.update_professional_details");
+
+
 
 
 
@@ -137,6 +143,13 @@ Route::get('/subscriber/unsubscribe/{email}', [App\Http\Controllers\SubscriberCo
 Route::get('/contact/{user_id}', [App\Http\Controllers\ContactController::class, 'index'])->name("contact.index");
 Route::post('/contact/create', [App\Http\Controllers\ContactController::class, 'store'])->name("contact.create");
 Route::post('/contact/delete', [App\Http\Controllers\ContactController::class, 'destroy'])->name("contact.delete");
+
+
+////webite setting ApI
+
+Route::post('/website/settings', [App\Http\Controllers\WebsiteSettingsController::class, 'index'])->name("website.index");
+Route::post('/website/update', [App\Http\Controllers\WebsiteSettingsController::class, 'update'])->name("website.update");
+
 
 
 

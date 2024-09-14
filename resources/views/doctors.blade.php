@@ -359,4 +359,159 @@ gateway:paystack
 
 
 
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Update Doctors professional Details</button>
+<div class="panel">
+    <div>
+    http://127.0.0.1:8000/api/doctors/update_professional_details
+        <h2>Post Request</h2>
+          <pre>
+            {
+
+              doctor_id:1
+clinic_affiliation:patient
+certifications:[MBLA Certificate, NDLA Certificate]
+years_of_experience:10
+languages:[igbo, English]
+specialization:tooth
+about:about me
+               
+
+            }
+          </pre>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+          <pre>
+
+          {
+    "message": "Successfully updated",
+    "status": true
+}
+        
+       
+
+          </pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Update Doctors professional Details</button>
+<div class="panel">
+    <div>
+    http://127.0.0.1:8000/api/doctors/update_professional_details
+        <h2>Post Request</h2>
+          <pre>
+            {
+
+              doctor_id:1
+clinic_affiliation:patient
+certifications:[MBLA Certificate, NDLA Certificate]
+years_of_experience:10
+languages:[igbo, English]
+specialization:tooth
+about:about me
+               
+
+            }
+          </pre>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+          <pre>
+
+          {
+    "message": "Successfully updated",
+    "status": true
+}
+        
+       
+
+          </pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">get Doctors professional Details</button>
+<div class="panel">
+    <div>
+    http://127.0.0.1:8000/api/doctors/professional_details
+        <h2>Post Request</h2>
+          <pre>
+            {
+
+              doctor_id:1
+ 
+
+            }
+          </pre>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+          <pre>
+
+          {
+    "message": "Successfully updated",
+    "status": true,
+    "data": {
+        "id": 1,
+        "doctor_id": 1,
+        "specialization": "tooth",
+        "clinic_affiliation": "patient",
+        "certifications": [
+            "MBLA Certificate"
+        ],
+        "years_of_experience": "10",
+        "languages": [
+            "english"
+        ],
+        "about": "about me",
+        "created_at": "2024-09-14T11:48:38.000000Z",
+        "updated_at": "2024-09-14T11:48:38.000000Z"
+    }
+}
+        
+       
+
+          </pre>
+    </div>
+
+</div>
+
+
+
+
+
 @include('layouts.footer')
