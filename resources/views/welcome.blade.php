@@ -603,6 +603,47 @@
 
 
 
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Change password </button>
+
+<div class="panel">
+    <div>
+        http://127.0.0.1:8000/api/plan/subscribe
+        <h2>Post Request</h2>
+          <pre>
+            {
+
+            'user_id' : 1,
+            "plan_id":3,
+            <!-- "otp":089898 -->
+
+
+
+
+
+            }
+          </pre>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+          <pre>
+            
+              {
+    "message": "Subscription Successfully",
+    "status": true
+}
+            
+          </pre>
+    </div>
+</div>
+
+
+////////////////////////////////////////////////////////////////////////
+
+
+
 
 
 

@@ -151,6 +151,17 @@ Route::post('/website/settings', [App\Http\Controllers\WebsiteSettingsController
 Route::post('/website/update', [App\Http\Controllers\WebsiteSettingsController::class, 'update'])->name("website.update");
 
 
+///ADMIN ROUTES
+Route::post('/admin/onboard_doctor', [App\Http\Controllers\AdminController::class, 'onboardDoctor'])->name("admin.onboard_doctor");
+
+
+//PLAN SUBSCRIPTIONS
+Route::post('/plan/subscribe', [App\Http\Controllers\PlanSubscriptionController::class, 'subscribeToPlan'])->name("plan.subscribe");
+
+
+
+
+
 
 
 

@@ -136,26 +136,17 @@ class DoctorsController extends Controller
         } else {
            /////////////////////////////////////
 
-           $appointments = Appointment::where("patient_id",$request->patient_id)->orWhere("booked_with",$request->patient_id)->orderBy("id","desc")->get();
+           $appointments = Appointment::where("patient_id",$request->patient_id)->orderBy("id","desc")->get();
 
             $doctors = [];
 
             foreach($appointments as $appointment){
-                $booked_with = User::find($appointment->booked_with);
-                $booked_by = User::find($appointment->booked_by);
-                if($booked_by->role = "doctor"){
-                   if(!in_array($booked_by,$doctors)){
-                    array_push($doctors,$booked_by);
+                $doctor = User::find($appointment->doctor_id);
+                
+                   if(!in_array($doctor,$doctors)){
+                    array_push($doctors,$doctor);
                    }
 
-                }else if($booked_with->role = "doctor"){
-                   // array_push($doctors,$booked_with);
-
-                    if(!in_array($booked_with,$doctors)){
-                        array_push($doctors,$booked_with);
-                       }
-
-                }
                
 
              
@@ -216,7 +207,7 @@ class DoctorsController extends Controller
             'gender' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
             
-            'password' => ['required', 'string', 'max:255'],
+           
            
            
         ]);
