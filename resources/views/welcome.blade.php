@@ -605,7 +605,7 @@
 
 ////////////////////////////////////////////////////////////////////////
 
-<button class="accordion">Change password </button>
+<button class="accordion">Subscribe to plans </button>
 
 <div class="panel">
     <div>
