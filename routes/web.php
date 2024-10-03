@@ -49,3 +49,9 @@ Route::get('/patients', function () {
 Route::get('/rating', function () {
     return view('rating');
 });
+
+Route::get('/call_logs', function () {
+    return view('call_logs');
+});
+
+

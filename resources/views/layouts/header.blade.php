@@ -76,6 +76,9 @@
       <li class="nav-item">
         <a class="nav-link " href="/rating">Rating </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/call_logs">Video Call Log </a>
+      </li>
     </ul>
 
    
