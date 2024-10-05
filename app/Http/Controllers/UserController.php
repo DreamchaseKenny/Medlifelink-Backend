@@ -635,4 +635,38 @@ function confirmOTP(Request $request){
 
 
 
+
+ public function updateAny(Request $request){
+
+    $validator = Validator::make($request->all(),[
+        'id' => ['required'],
+       
+      ]);
+
+    if($validator->fails()){
+      
+        return response()->json(["message"=>"user update failed",
+        "status"=>false,"errors"=>$validator->messages()->all()]);
+    } 
+
+
+    $user = User::find($request->id);
+    if($user == null){
+      
+        return response()->json(["message"=>"user not found",
+        "status"=>false,"errors"=>"user not found"]);
+    } 
+    $user->fill($request->all());
+    $user->save();
+
+        return response()->json(["message"=>"successfull",
+        "status"=>true,"data"=>$user]);
+
+
+
+ }
+
+
+
+
 }

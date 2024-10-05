@@ -67,12 +67,7 @@ class VideoCallLogController extends Controller
         $validator = Validator::make($request->all(),[
            
             'call_id' =>  ['required' ],
-
-            
-            
-           
-           
-        ]);
+ ]);
 
        
 
@@ -93,6 +88,47 @@ class VideoCallLogController extends Controller
             return response()->json(["message"=>"success",
             "status"=>true,"data"=>$call_log]);
         //
+    }
+
+    function check(Request $request, VideoCallLog $videoCallLog){
+
+        $validator = Validator::make($request->all(),[
+           
+            'id' =>  ['required' ],
+            'patient_id' =>  [],
+            'doctor_id' =>  [],
+           
+           
+        ]);
+
+       
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"failed to save call log ",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        }
+        
+       
+        $videoCallLog = VideoCallLog::find($request->id);
+        $videoCallLog->fill($request->all());
+        $videoCallLog->save();
+
+        return response()->json(["message"=>"success",
+        "status"=>true,"data"=>$videoCallLog]);
+
+
+
+
+        $user->name = "obi";
+        $user->job = "Dev";
+        $user->save();
+
+        ///OR
+
+        $user->update(["name"=>"obi","job"=>"Dev"]);
+    
+
     }
 
     /**

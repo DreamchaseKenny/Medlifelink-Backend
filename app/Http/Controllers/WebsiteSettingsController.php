@@ -86,5 +86,39 @@ class WebsiteSettingsController extends Controller
 
     }
 
+
+
+    public function updateAny(Request $request){
+
+        $validator = Validator::make($request->all(),[
+            'id' => ['required'],
+           
+          ]);
+    
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"settings not found",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        } 
+    
+    
+        $websiteSettings = WebsiteSettings::find($request->id);
+
+        if($websiteSettings == null){
+      
+            return response()->json(["message"=>"settings not found",
+            "status"=>false,"errors"=>"settings not found"]);
+        } 
+
+        $websiteSettings->fill($request->all());
+        $websiteSettings->save();
+    
+            return response()->json(["message"=>"successfull",
+            "status"=>true,"data"=>$websiteSettings]);
+    
+    
+    
+     }
+
     
 }

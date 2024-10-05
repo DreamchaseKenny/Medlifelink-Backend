@@ -196,6 +196,53 @@ specialization:tooth
 
 
 
+
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Admin create/ onboard Doctor  </button>
+<div class="panel">
+    <div>
+    http://127.0.0.1:8000/api/website/settings
+        <h2>POST Request</h2>
+        <p>
+            {
+                admin_id:1
+
+email:docs3@gmail.com
+password:12345678
+username:ogadocs3
+phone:09088666
+fullname:Mr DOcs
+gender:male
+dob:12-01-1998
+photo:photo
+
+clinic_affiliation:patient
+certifications:[MBLA Certificate]
+years_of_experience:10
+languages:[english,igbo]
+specialization:tooth
+
+
+            }
+        </p>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+        <p>
+      {
+    "message": "Successfully created",
+    "status": true
+}
+        </p>
+    </div>
+
+</div>
+
+
+
 @include('layouts.footer')
 
 

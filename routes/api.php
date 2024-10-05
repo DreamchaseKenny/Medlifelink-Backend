@@ -26,6 +26,8 @@ Route::post('/user/update_password', [App\Http\Controllers\UserController::class
 Route::post('/user/forgotpassword', [App\Http\Controllers\UserController::class, 'forgotPassword'])->name("user.forgotpassword");
 
 Route::post('/user/changePassword', [App\Http\Controllers\UserController::class, 'changePassword'])->name("user.changePassword");
+Route::post('/user/updateany', [App\Http\Controllers\UserController::class, 'updateAny'])->name("user.updateany");
+
 
 Route::post('/otp/confirm', [App\Http\Controllers\UserController::class, 'confirmOTP'])->name("user.changePassword");
 
@@ -149,6 +151,8 @@ Route::post('/contact/delete', [App\Http\Controllers\ContactController::class, '
 
 Route::post('/website/settings', [App\Http\Controllers\WebsiteSettingsController::class, 'index'])->name("website.index");
 Route::post('/website/update', [App\Http\Controllers\WebsiteSettingsController::class, 'update'])->name("website.update");
+Route::post('/website/updateany', [App\Http\Controllers\WebsiteSettingsController::class, 'updateAny'])->name("website.updateany");
+
 
 
 ///ADMIN ROUTES
@@ -163,6 +167,10 @@ Route::post('/plan/subscribe', [App\Http\Controllers\PlanSubscriptionController:
 Route::post('/callogs/all', [App\Http\Controllers\VideoCallLogController::class, 'index'])->name("calllogs.index");
 Route::post('/callogs/create', [App\Http\Controllers\VideoCallLogController::class, 'store'])->name("calllogs.store");
 Route::post('/callogs/get', [App\Http\Controllers\VideoCallLogController::class, 'findById'])->name("calllogs.get");
+
+
+Route::patch('/callogs/check', [App\Http\Controllers\VideoCallLogController::class, 'check'])->name("calllogs.check");
+
 
 
 
