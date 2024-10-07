@@ -23,6 +23,50 @@ class MailController extends Controller
         //return "Email has been sent.";
     }
 
+
+
+
+
+
+
+
+
+
+    public function sendVideoCallMesage($userModel,$message)
+    {
+        $content = [
+            'subject' => 'MedlifeiLink Appoinment VideoCall',
+            'model' => $userModel,
+            'view' => 'mails.videocallrequest',
+            'message' => $message,
+        ];
+
+        Mail::to($content['model']->email)->send(new SampleMail($content));
+
+        //return "Email has been sent.";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function appointmentMail($appointment,$user,$message)
     {
         $content = [

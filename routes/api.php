@@ -171,6 +171,8 @@ Route::post('/plan/subscribe', [App\Http\Controllers\PlanSubscriptionController:
 Route::post('/callogs/all', [App\Http\Controllers\VideoCallLogController::class, 'index'])->name("calllogs.index");
 Route::post('/callogs/create', [App\Http\Controllers\VideoCallLogController::class, 'store'])->name("calllogs.store");
 Route::post('/callogs/get', [App\Http\Controllers\VideoCallLogController::class, 'findById'])->name("calllogs.get");
+Route::get('/callogs/get/{user_id}', [App\Http\Controllers\VideoCallLogController::class, 'getUserCallLogs'])->name("calllogs.getAll");
+
 
 
 Route::patch('/callogs/check', [App\Http\Controllers\VideoCallLogController::class, 'check'])->name("calllogs.check");

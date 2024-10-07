@@ -109,12 +109,61 @@ doctor_id:3
         "id": 1
     }
 }
+
     
 
           </pre>
     </div>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion"> Get User Call log </button>
+<div class="panel">
+    <div>
+    http://127.0.0.1:8000/api/callogs/get/{user_id}
+        <h2>Get Request</h2>
+          <pre>
+           
+          </pre>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+          <pre>
+        
+          {
+    "message": "success",
+    "status": true,
+    "data": [{
+        "call_id": "767",
+        "patient_id": "1",
+        "doctor_id": "3",
+        "updated_at": "2024-10-02T21:18:03.000000Z",
+        "created_at": "2024-10-02T21:18:03.000000Z",
+        "id": 1
+    }]
+}
+
+    
+
+          </pre>
+    </div>
+
+</div>
+
 
 
 
