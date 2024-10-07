@@ -51,6 +51,8 @@ Route::post('/appointment/reschedule', [App\Http\Controllers\AppointmentControll
 
 Route::post('/appointment/active', [App\Http\Controllers\AppointmentController::class, 'activeAppointments'])->name("appointment.active");
 Route::post('/appointment/recent', [App\Http\Controllers\AppointmentController::class, 'recentAppointments'])->name("appointment.recent");
+Route::get('/appointment/all/{user_id}', [App\Http\Controllers\AppointmentController::class, 'getAll'])->name("appointment.getAll");
+
 
 
 
@@ -108,6 +110,8 @@ Route::get('/user/transactions/{user_id}', [App\Http\Controllers\TransactionsCon
 Route::post('/transactions/approve', [App\Http\Controllers\TransactionsController::class, 'approveTransaction'])->name("transaction.approve");
 //decline transactions
 Route::post('/transactions/decline', [App\Http\Controllers\TransactionsController::class, 'declineTransaction'])->name("transaction.decline");
+Route::get('/transactions/all/{user_id}', [App\Http\Controllers\TransactionsController::class, 'getAllTransactions'])->name("transactions.all");
+
 
 
 ///Rating Endpoinst

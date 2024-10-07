@@ -13,6 +13,44 @@ use App\Http\Controllers\MailController;
 class TransactionsController extends Controller
 {
 
+    /*
+    show all transactions
+    */
+
+    public function getAllTransactions(Request $request){
+
+
+          $validator = Validator::make($request->route()->parameters(),[
+            "user_id"=>['required']
+               ]);
+       
+           if($validator->fails()){
+             
+               return response()->json(["message"=>"validation error2",
+               "status"=>false,"errors"=>$validator->messages()->all()]);
+           }
+    
+           $user = User::find($request->user_id);
+           if($user == null){
+    
+            return response()->json(["message"=>"User not found",
+            "status"=>false]);
+    
+           }
+   
+           $transactions = Transaction::all();
+           $transactions1 =[];
+   
+           foreach($transactions as $transaction){
+               $transaction['username'] = $user->username;
+               array_push($transactions1,$transaction);
+           }
+   
+           return response()->json(["message"=>"success",
+           "status"=>true, "data"=>$transactions1]);
+
+    }
+
     public function fundWallet(Request $request){
 
         //
@@ -94,6 +132,25 @@ class TransactionsController extends Controller
    
    }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Display a listing of the resource.
      */
@@ -134,6 +191,29 @@ class TransactionsController extends Controller
         
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -213,6 +293,36 @@ class TransactionsController extends Controller
 
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * update a transaction.
      */
@@ -281,6 +391,30 @@ class TransactionsController extends Controller
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function declineTransaction(Request $request)
     {
           //
@@ -346,6 +480,33 @@ class TransactionsController extends Controller
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /**

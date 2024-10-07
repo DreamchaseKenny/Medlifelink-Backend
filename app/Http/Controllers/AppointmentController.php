@@ -99,6 +99,60 @@ class AppointmentController extends Controller
 
 
 
+    
+    /**
+     * Display a listing of the Appointment.
+     */
+    public function getAll(Request $request)
+    {
+        //
+         //
+         $validator = Validator::make($request->route()->parameters(),[
+           
+            'user_id' =>  ['required' ],
+           
+        ]);
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"appointments fetch failed ",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        } else {
+            $appointments = Appointment::all();
+
+            $appointmentList = [];
+
+            foreach($appointments as $appointment){
+                $doctor = User::find($appointment->doctor_id);
+                $patient = User::find($appointment->patient_id);
+
+                $appointment["doctor"] =  $doctor;
+                $appointment["patient"] =  $patient;
+                array_push($appointmentList,$appointment);
+
+                
+            }
+
+
+
+            
+
+
+
+            return response()->json([
+                'message'=> 'appointments successfully fetched','status'=>true,
+              
+                "data"=>$appointmentList]
+            );
+
+        }
+    }
+
+
+
+
+
+
 
 
 
