@@ -168,6 +168,11 @@ Route::post('/admin/onboard_doctor', [App\Http\Controllers\AdminController::clas
 
 //PLAN SUBSCRIPTIONS
 Route::post('/plan/subscribe', [App\Http\Controllers\PlanSubscriptionController::class, 'subscribeToPlan'])->name("plan.subscribe");
+Route::post('/plan/subscribers', [App\Http\Controllers\PlanSubscriptionController::class, 'subscribers'])->name("plan.users");
+
+Route::get('/plan/all', [App\Http\Controllers\PlanController::class, 'index'])->name("plan.all");
+
+
 
 
 //VIDEO CALL LOGS

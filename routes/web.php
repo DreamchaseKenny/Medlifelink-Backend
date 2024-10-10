@@ -54,4 +54,8 @@ Route::get('/call_logs', function () {
     return view('call_logs');
 });
 
+Route::get('/plans', function () {
+    return view('plansubscription');
+});
+
 

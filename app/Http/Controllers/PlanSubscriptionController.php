@@ -13,6 +13,80 @@ use Illuminate\Support\Facades\Validator;
 
 class PlanSubscriptionController extends Controller
 {
+
+
+    /**
+     * GET USERS SUBSCRIBSCRIPTIONS 
+     */
+
+
+    public function subscripions(Request $request){
+        $validator = Validator::make($request->all(),[
+
+            'user_id' => ['required', ],
+           
+            
+        ]);
+
+        $user = User::find($request->user_id);
+
+    }
+
+
+
+
+
+
+
+    /**
+     * GET USERS WHO ARE SUBSCRIBERS 
+     */
+    public function subscribers(Request $request){
+        $validator = Validator::make($request->all(),[
+
+            'status' => ['required', ],
+           
+            
+        ]);
+
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"Subscription failed ",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        }
+        $status = ["all", "active","completed"];
+
+        if(!in_array($request->status, $status) ){
+            return   response()->json(["message"=>" status must be active completed or all ",
+            "status"=>false]);
+
+        }
+
+        if($request->status == "all"){
+
+            $subscribers = PlanSubscription::all();
+            
+        }else{
+            $subscribers = PlanSubscription::where("status",$request->status)->get();
+        }
+
+        return   response()->json(["message"=>" success ",
+        "status"=>true, "data"=>$subscribers]);
+
+
+
+        
+
+        
+
+    }
+
+
+
+
+
+
+
     
 
     /**
@@ -89,9 +163,9 @@ class PlanSubscriptionController extends Controller
     
         ]);
     
-        $message = "Wallet funding of N$request->amount is successful";
+        $message = "plan Subscrition was successful";
     
-        (new MailController)->notification($user,"wallet funding",$message);
+        (new MailController)->notification($user,"Plan subscription",$message);
 
         // $table->float("amount");
         // $table->integer("appointments_booked");

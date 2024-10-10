@@ -79,6 +79,9 @@
       <li class="nav-item">
         <a class="nav-link " href="/call_logs">Video Call Log </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/plans">Plan / Plan Subscriptions </a>
+      </li>
     </ul>
 
    
