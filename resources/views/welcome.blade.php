@@ -705,6 +705,69 @@
 
 ////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Update any column </button>
+
+<div class="panel">
+    <div>
+    https://api.medlifelink.life/api/user/updateAny
+        <h2>Post Request</h2>
+          <pre>
+            {
+
+            'id' : 1, (id is the id of the user to be updated),
+            "photo": file format
+            }
+          </pre>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+          <pre>
+          {
+    "message": "successfull",
+    "status": true,
+    "data": {
+        "id": 4,
+        "user_id": "4",
+        "fullname": "ugo",
+        "balance": "0",
+        "consultation_amount": "0",
+        "email": "docs3@gmail.com",
+        "username": "ogadocs3",
+        "phone": "09088666",
+        "country_code": "+234",
+        "country": "Nigeria",
+        "gender": "male",
+        "address": "123 address",
+        "specialization": "tooth",
+        "verification_code": null,
+        "email_verified": "0",
+        "status": "active",
+        "role": "doctor",
+        "created_by": "",
+        "rating": "",
+        "role_id": "1",
+        "email_verified_at": null,
+        "weight": "0",
+        "height": "0",
+        "blood_pressure": "",
+        "glucose_level": "",
+        "photo": "photo.png",
+        "created_at": "2024-05-09T16:59:23.000000Z",
+        "updated_at": "2024-10-05T06:58:54.000000Z",
+        "dob": "12-01-1998"
+    }
+}
+            
+          </pre>
+    </div>
+</div>
+
+
+////////////////////////////////////////////////////////////////////////
+
 
 
 

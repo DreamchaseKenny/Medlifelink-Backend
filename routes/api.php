@@ -27,9 +27,12 @@ Route::post('/user/forgotpassword', [App\Http\Controllers\UserController::class,
 
 Route::post('/user/changePassword', [App\Http\Controllers\UserController::class, 'changePassword'])->name("user.changePassword");
 Route::post('/user/updateany', [App\Http\Controllers\UserController::class, 'updateAny'])->name("user.updateany");
+Route::post('/user/updatephoto', [App\Http\Controllers\UserController::class, 'updatePhoto'])->name("user.updatePhoto");
+
 
 
 Route::post('/otp/confirm', [App\Http\Controllers\UserController::class, 'confirmOTP'])->name("user.changePassword");
+
 
 
 

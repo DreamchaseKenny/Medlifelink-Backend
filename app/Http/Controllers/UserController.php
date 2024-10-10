@@ -669,4 +669,44 @@ function confirmOTP(Request $request){
 
 
 
+ public function updatePhoto(Request $request){
+
+    $validator = Validator::make($request->all(),[
+        'id' => ['required'],
+        'photo' => ['image','mimes:jpeg,jpg,png,gif','required','max:10000'],
+       
+      ]);
+
+    if($validator->fails()){
+      
+        return response()->json(["message"=>"user update failed",
+        "status"=>false,"errors"=>$validator->messages()->all()]);
+    } 
+
+
+    $user = User::find($request->id);
+    if($user == null){
+      
+        return response()->json(["message"=>"user not found",
+        "status"=>false,"errors"=>"user not found"]);
+    } 
+
+
+    $filename = $user->id.'_'.time().'.'.$request->photo->getClientOriginalExtension();
+    $request->photo->move(public_path('images/profiles'), $filename);
+
+        $user->photo = $filename;
+        $user->save();
+    
+
+        return response()->json(["message"=>"successfull",
+        "status"=>true,"data"=>$user]);
+
+
+
+ }
+
+
+
+
 }
