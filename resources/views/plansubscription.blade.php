@@ -136,6 +136,56 @@
 
 
 
+////////////////////////////////////////////////////////////////////////
+
+<button class="accordion">Get a user subscriptions</button>
+<div class="panel">
+    <div>
+    http://127.0.0.1:8000/api/plan/subscribers
+        <h2>POST Request</h2>
+       <pre>
+            {
+                user_id : 1,
+                "status": all || active || completed"
+
+            }
+       </pre>
+    </div>
+
+    <div>
+        <h2>Response</h2>
+       <pre>
+       {
+    "message": " success ",
+    "status": true,
+    "data": [
+        {
+            "id": 1,
+            "user_id": 4,
+            "plan_id": 1,
+            "amount": 2500,
+            "appointments_booked": 0,
+            "total_appointments": 3,
+            "num_days": 0,
+            "duration": 30,
+            "status": "active",
+            "created_at": "2024-09-15T13:05:38.000000Z",
+            "updated_at": "2024-09-15T13:05:38.000000Z"
+        },
+        
+    ]
+}
+       </pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
 
 
 

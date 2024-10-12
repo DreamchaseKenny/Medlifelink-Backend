@@ -18,6 +18,7 @@ class Appointment extends Model
         'type',
         'link',
         'appointment_date',
-        'price'
+        'price',
+        'payment_type'
     ];
 }

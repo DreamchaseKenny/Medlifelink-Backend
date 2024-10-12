@@ -20,7 +20,7 @@ class PlanSubscriptionController extends Controller
      */
 
 
-    public function subscripions(Request $request){
+    public function userSubscripions(Request $request){
         $validator = Validator::make($request->all(),[
 
             'user_id' => ['required', ],
@@ -28,7 +28,29 @@ class PlanSubscriptionController extends Controller
             
         ]);
 
+        if($validator->fails()){
+          
+            return response()->json(["message"=>"Subscription failed ",
+            "status"=>false,"errors"=>$validator->messages()->all()]);
+        }
+
         $user = User::find($request->user_id);
+
+        if($user == null){
+
+            return response()->json(["message"=>"user is null",
+            "status"=>false]);
+
+        }
+
+
+        $subscriptions = PlanSubscription::where("user_id",$request->user_id)->get();
+
+
+
+
+        return   response()->json(["message"=>" success ",
+        "status"=>true, "data"=>$subscriptions]);
 
     }
 

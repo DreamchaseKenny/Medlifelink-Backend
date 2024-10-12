@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\MailController;
+use App\Models\PlanSubscription;
 
 class AppointmentController extends Controller
 {
@@ -225,9 +226,22 @@ class AppointmentController extends Controller
             $request['status'] = "pending";
             $request['price'] = $doctor->consultation_amount;
 
-            ////////////Deduct money from users balance/////////////
-            $patient->balance = ($patient->balance -  $doctor->consultation_amount);
-            $patient->save();
+          /////CHECK IF USER IS A SUBCRIBERS
+          $subscription = PlanSubscription::where("user_id",$request->patient_id)
+          ->where("status","active")->where("appointments_booked,"<",total_appointments")->first();
+          if($subscription != null){
+            ///
+            $request['payment_type'] = "subcriber";
+            //increae the number of booking from the subscribers
+            $subscription->appointments_booked = $subscription->appointments_booked + 1;
+            $subscription->save();
+
+          }else{
+              ////////////Deduct money from users balance/////////////
+              $request['payment_type'] = "single";
+              $patient->balance = ($patient->balance -  $doctor->consultation_amount);
+              $patient->save();
+          }
 
 
 
@@ -357,7 +371,7 @@ class AppointmentController extends Controller
             );
 
         
-    }
+}
 
 
 
@@ -556,10 +570,16 @@ class AppointmentController extends Controller
             }
             $appointment->status = "completed";
 
-             ///credit  doctor/////
-        $doctor_new_balance = $doctor->balance + $appointment->price;
-        $doctor->balance = $doctor_new_balance;
-        $doctor->save();
+            if($appointment->payment_type != "subscriber"){
+
+             ///credit  doctor///// if appointment type is not from a subscriber
+                $doctor_new_balance = $doctor->balance + ( $appointment->price * 0.8);
+                $doctor->balance = $doctor_new_balance;
+                $doctor->save();
+
+            }
+
+        
 
         }
          else{
@@ -656,9 +676,25 @@ class AppointmentController extends Controller
         // $doctor->save();
 
 
+      if($appointment->payment_type != "subscriber"){
+
         $patient_new_balance = $patient->balance + $appointment->price;
         $patient->balance = $patient_new_balance;
         $patient->save();
+
+      }else{
+        $subscription = PlanSubscription::where("user_id",$request->patient_id)
+        ->where("status","active")->where("appointments_booked,"<",total_appointments")->first();
+        if($subscription != null){
+            ///
+            
+            //increae the number of booking from the subscribers
+            $subscription->appointments_booked = $subscription->appointments_booked - 1;
+            $subscription->save();
+
+          }
+        
+      }
 
       
 

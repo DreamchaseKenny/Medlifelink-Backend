@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('type')->default("");
             $table->string('status')->default("pending");
             $table->text('description')->default("");
+            $table->text('payment_type')->default("single");
             $table->timestamps();
         });
     }

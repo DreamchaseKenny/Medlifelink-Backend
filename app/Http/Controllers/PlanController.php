@@ -11,6 +11,7 @@ class PlanController extends Controller
     //
 
     function index(Request $request){
+        
 
         $plans = Plan::all();
         return response()->json(["message"=>"successfull",
