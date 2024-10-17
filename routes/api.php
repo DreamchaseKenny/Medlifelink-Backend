@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+///SECURED BY MIDWARE TO ALLOW ONLY MEDLIFELINK.COM TO MAKE REQUEST
+Route::middleware('RestrictByDomain')->group(function () {
+
 //user
 
 Route::post('/create_user', [App\Http\Controllers\UserController::class, 'create'])->name("create_user");
@@ -226,4 +229,10 @@ Route::post('/admin/users', [App\Http\Controllers\UserController::class, 'index'
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+
+
+
 });

@@ -129,6 +129,7 @@ class VideoCallLogController extends Controller
           ///send email to user
           $message = "You have a video call request $patient->fullname ";
           $subject = "MedlifeiLink Appoinment VideoCall";
+          $mailController = (new MailController);
           $mailController->notification($patient,$subject,$message);
         ////
 

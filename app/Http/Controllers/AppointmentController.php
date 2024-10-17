@@ -228,7 +228,7 @@ class AppointmentController extends Controller
 
           /////CHECK IF USER IS A SUBCRIBERS
           $subscription = PlanSubscription::where("user_id",$request->patient_id)
-          ->where("status","active")->where("appointments_booked,"<",total_appointments")->first();
+          ->where("status","active")->where("appointments_booked","<","total_appointments")->first();
           if($subscription != null){
             ///
             $request['payment_type'] = "subcriber";

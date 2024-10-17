@@ -92,8 +92,22 @@ class PlanSubscriptionController extends Controller
             $subscribers = PlanSubscription::where("status",$request->status)->get();
         }
 
+         $subscribers1  = [];
+
+        foreach($subscribers as $subscriber){
+            $user = User::find($subscriber->user_id);
+            $subscriber['user'] = $user;
+
+            array_push($subscribers1,$subscriber);
+
+
+
+        }
+
+
+
         return   response()->json(["message"=>" success ",
-        "status"=>true, "data"=>$subscribers]);
+        "status"=>true, "data"=>$subscribers1]);
 
 
 
