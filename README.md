@@ -14,7 +14,7 @@
 <p>The Profile picture storage  contained inside the /public/images/profiles  folder</p>
 <p>The Database Migrations  are contained inside the /database/migrations/ folder</p>
 
-<p><b>Conclusion:</b> The naming convesion of each folder, file, route and functions reflects the what they do</p>
+<p><b>Conclusion:</b> The naming convension of each folder, file, route and functions reflects the what they do</p>
 
 
 
