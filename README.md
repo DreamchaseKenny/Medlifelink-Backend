@@ -3,7 +3,7 @@
 
 
 ## About this project
-<h1>MEDLIFELINK BANKEND is the backend of medlifelink developed with PHP / LARAVEL</h1>
+<h1>MEDLIFELINK BANKEND is the backend of medlifelink.com, developed with PHP / LARAVEL</h1>
 <p>The project follows the standard laravel MVC Structure </p>
 <p>The Documentations are contained inside the /resources/view folder, the documentation is was writing in pure html and css</p>
 <p>The routing is contained inside the /routes folder </p>
