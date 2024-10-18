@@ -9,8 +9,8 @@
 <p>The routing is contained inside the /routes folder </p>
 <p>The Controllers are contained inside the /app/Http/Controllers folder</p>
 <p>The Security Midlewares are contained inside the /app/Http/Midleware folder</p>
-<p>The Security Models are contained inside the /app/Http/Models  folder</p>
-<p>The Security Mails are contained inside the /app/Http/Mail    folder</p>
+<p>The  Models are contained inside the /app/Http/Models  folder</p>
+<p>The  Mails are contained inside the /app/Http/Mail    folder</p>
 <p>The Profile picture storage  contained inside the /public/images/profiles  folder</p>
 <p>The Database Migrations  are contained inside the /database/migrations/ folder</p>
 
