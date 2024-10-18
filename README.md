@@ -16,6 +16,8 @@
 
 <p><b>Conclusion:</b> The naming convension of each folder, files, routes and functions reflects the functions they perform and what they do in this project</p>
 
+<p>This project was developed by <a href='https://github.com/AmosLucky'>Amos Chibueze</a></p>
+
 
 
 
