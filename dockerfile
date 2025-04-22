@@ -27,12 +27,17 @@ WORKDIR /var/www
 # Copy existing application directory
 COPY . /var/www/
 
+# Copy .env.example to .env
+RUN cp .env.example .env
+
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader
 RUN npm install && npm run build
 
-# Generate key and optimize
+# Generate application key
 RUN php artisan key:generate
+
+# Optimize application
 RUN php artisan optimize
 
 # Set permissions
